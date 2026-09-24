@@ -748,8 +748,7 @@ Im weiteren Verlauf des Workshops beschäftigen wir uns unter anderem mit:
 * Aufbau eines LaTeX-Dokuments
 * Dokumentklassen
 * Packages
-* mathematischen Formeln
-* physikalischen Formeln
+* mathematischen/physikalischen Formeln
 * Tabellen
 * Abbildungen
 * Literaturverwaltung
