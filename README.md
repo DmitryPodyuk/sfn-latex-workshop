@@ -54,8 +54,8 @@ sfn-latex-workshop/
 │       └── install-latex.sh
 │
 ├── examples/
-│   ├── hello-world.tex
-│   └── math-example.tex
+│   ├── ...
+│   └── ...
 │
 └── presentations/
     ├── session-01/
