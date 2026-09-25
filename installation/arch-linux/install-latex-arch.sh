@@ -123,33 +123,11 @@ if command -v code >/dev/null 2>&1; then
     command -v code
     echo ">>> Existing VS Code installation will be used."
 
-elif command -v yay >/dev/null 2>&1; then
-
-    echo ">>> yay detected."
-    yay -S --needed --noconfirm visual-studio-code-bin
-
 else
 
-    echo ">>> yay not found."
-    echo ">>> Building visual-studio-code-bin directly from AUR..."
-
-    BUILD_DIR="$(mktemp -d)"
-
-    cleanup() {
-        rm -rf "$BUILD_DIR"
-    }
-
-    trap cleanup EXIT
-
-    git clone \
-        https://aur.archlinux.org/visual-studio-code-bin.git \
-        "$BUILD_DIR/visual-studio-code-bin"
-
-    cd "$BUILD_DIR/visual-studio-code-bin"
-
-    makepkg -si --noconfirm
-
-    cd "$HOME"
+    echo ">>> Installing CodeOSS..."
+    sudo pacman -S code
+    echo ">>> Installation of CodeOSS complete."
 
 fi
 
