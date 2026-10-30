@@ -1,0 +1,24 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\sisetup{locale=DE}
+\begin{document}
+\section{Messreihe}
+\begin{table}[htbp]
+  \centering
+  \caption{Temperaturabfall während des Versuchs}
+  \label{tab:messung}
+  \begin{tabularx}{\linewidth}{X S[table-format=2.0] S[table-format=2.1]}
+    \toprule
+    {Messpunkt} & {Zeit (min)} & {Temperatur (\si{\degreeCelsius})} \\
+    \midrule
+    Start   & 0  & 65.0 \\
+    Mitte   & 10 & 52.4 \\
+    Ende    & 20 & 44.1 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\end{document}

@@ -1,0 +1,40 @@
+% Selbst gestaltete, bewusst zurückhaltende Titelseite.
+% Achtung: eine offizielle schulische Titelseitenvorgabe hat Vorrang.
+\begin{titlepage}
+  \thispagestyle{empty}
+  \setstretch{1.12}
+  \noindent
+  \begin{minipage}[c]{.57\textwidth}
+    \SchulLogo
+  \end{minipage}
+  \begin{minipage}[c]{.38\textwidth}
+    \ifMitSFN\raggedleft\SFNLogo\fi
+  \end{minipage}
+
+  \vspace*{1.9cm}
+  \noindent{\small\sffamily\bfseries\color{BLLgrau}
+    BESONDERE LERNLEISTUNG \quad | \quad ABITUR \Abiturjahr\par}
+  \vspace{.3cm}
+  \noindent\textcolor{BLLblau}{\rule{\textwidth}{1.3pt}}
+  \vspace{1.25cm}
+
+  \noindent{\huge\bfseries\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000\color{BLLblau}\Arbeitstitel\par}
+  \vspace{.85cm}
+  \noindent{\Large\color{BLLgrau}\Untertitel\par}
+  \vfill
+
+  \par\hrule height .3pt\vspace{.55cm}
+  \noindent
+  \begin{tabularx}{.97\textwidth}{@{}>{\bfseries}p{.38\textwidth}X@{}}
+    Verfasser/in: & \Autor \\[.2cm]
+    Schule: & \Schule, \Schulort \\[.2cm]
+    Jahrgangsstufe: & \Jahrgang \\[.2cm]
+    Referenzfach/Kurs: & \KlasseOderKurs \\[.2cm]
+    Schulische Betreuung: & \BetreuungSchule \\[.2cm]
+    \ifMitSFN SFN-Begleitung: & \BetreuungSFN\\
+      & {\small\ExterneEinrichtung} \\[.2cm]\fi
+    Abgabedatum: & \Abgabedatum \\[.55cm]
+    \multicolumn{2}{@{}l@{}}{\small\color{BLLgrau} Schriftliche Ausarbeitung im Rahmen der besonderen Lernleistung}
+  \end{tabularx}
+\end{titlepage}
+\setstretch{1.5}

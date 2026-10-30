@@ -1,0 +1,16 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{language=Python, basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10}, frame=single,
+  breaklines=true, numbers=left, numberstyle=\tiny}
+\begin{document}
+\section{Auswertungsprogramm}
+\begin{lstlisting}[caption={Berechnung des Mittelwerts},label={lst:mittel}]
+werte = [65.0, 52.4, 44.1]
+mittelwert = sum(werte) / len(werte)
+print(f"Mittelwert: {mittelwert:.1f}")
+\end{lstlisting}
+\end{document}

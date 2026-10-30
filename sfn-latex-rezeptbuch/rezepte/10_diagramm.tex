@@ -1,0 +1,21 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\section{Diagramm aus CSV-Daten}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[xlabel={Zeit (min)},
+      ylabel={Temperatur (Grad Celsius)},
+      grid=major, width=.85\linewidth, height=6cm]
+      \addplot[mark=*] table[
+        x=zeit,y=temperatur,col sep=comma
+      ] {daten/messwerte.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Messwerte aus einer CSV-Datei}
+\end{figure}
+\end{document}

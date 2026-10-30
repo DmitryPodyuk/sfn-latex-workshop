@@ -1,0 +1,17 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{literatur.bib}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+\section{Quellen korrekt nennen}
+\textcite{lamport1994} erklärt die
+Dokumenterstellung mit LaTeX.
+Beim Umgang mit Messunsicherheiten sind
+Fachquellen wichtig \parencite{jcgm2008}.
+Das Paket \enquote{siunitx} hilft beim
+Satz von Einheiten \parencite{siunitx_ctan}.
+\printbibliography[heading=bibintoc,title={Quellenverzeichnis}]
+\end{document}

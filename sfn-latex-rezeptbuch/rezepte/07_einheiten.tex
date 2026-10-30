@@ -1,0 +1,16 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{siunitx}
+\sisetup{locale=DE}
+\begin{document}
+\section{Größen und Einheiten}
+Die Strecke beträgt \qty{12.5}{\metre}.
+Die Zeit beträgt \qty{2.5}{\second}.
+Die mittlere Geschwindigkeit ist
+\begin{equation}
+  v = \frac{s}{t} = \qty{5}{\metre\per\second}.
+\end{equation}
+Ein Messwert ohne Einheit: \num{1234.56}.
+Eine Temperatur: \qty{21.4}{\degreeCelsius}.
+\end{document}

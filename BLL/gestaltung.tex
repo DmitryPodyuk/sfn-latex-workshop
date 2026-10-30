@@ -1,0 +1,51 @@
+% ================================================================
+% GESTALTUNG: möglichst nur die Angaben in angaben.tex ändern.
+% Diese Einstellungen geben eine ruhige, wissenschaftliche Optik.
+% ================================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[left=3.2cm,right=2.6cm,top=2.7cm,bottom=2.8cm,headsep=.7cm,head=22pt]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{locale=DE,per-mode=symbol,detect-all}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{csquotes}
+\usepackage{listings} % optionaler Programmcode-Anhang
+\usepackage{xcolor}
+\definecolor{BLLblau}{HTML}{243C54}
+\definecolor{BLLgrau}{HTML}{65717B}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{scrlayer-scrpage}
+\setlength{\footheight}{22pt}
+\clearpairofpagestyles
+\automark[chapter]{chapter}
+\ihead{\headmark}
+\ohead{}
+\cfoot[\pagemark]{\pagemark}
+\setkomafont{pagehead}{\small\normalfont\color{BLLgrau}}
+\setkomafont{pagefoot}{\small\normalfont\color{BLLgrau}}
+\setkomafont{chapter}{\Large\bfseries\color{BLLblau}}
+\setkomafont{section}{\large\bfseries\color{BLLblau}}
+\setkomafont{subsection}{\normalsize\bfseries}
+\KOMAoptions{headsepline=0.35pt}
+\setlength{\emergencystretch}{2em}
+\usepackage[backend=biber,style=authoryear,sorting=nyt,maxcitenames=2]{biblatex}
+\addbibresource{literatur.bib}
+\usepackage[hidelinks,unicode]{hyperref}
+\hypersetup{pdftitle={\Arbeitstitel},pdfauthor={\Autor},pdfsubject={Besondere Lernleistung}}
+
+% Gibt automatisch zuerst das Schul- oder SFN-Logo aus, falls vorhanden.
+% Niemals ein Logo ohne Genehmigung verwenden.
+\newcommand{\SchulLogo}{%
+  \IfFileExists{logos/schule.pdf}{\includegraphics[height=1.45cm,keepaspectratio]{logos/schule.pdf}}{%
+    \IfFileExists{logos/schule.png}{\includegraphics[height=1.45cm,keepaspectratio]{logos/schule.png}}{\textcolor{BLLgrau}{\small\sffamily\bfseries\Schule}}}}
+\newcommand{\SFNLogo}{%
+  \IfFileExists{logos/sfn.pdf}{\includegraphics[height=1.45cm,keepaspectratio]{logos/sfn.pdf}}{%
+    \IfFileExists{logos/sfn.png}{\includegraphics[height=1.45cm,keepaspectratio]{logos/sfn.png}}{\textcolor{BLLgrau}{\small\sffamily SFN \textbar\ Nordhessen}}}}

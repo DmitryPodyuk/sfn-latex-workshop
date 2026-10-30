@@ -1,0 +1,461 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl} %https://ctan.org/pkg/scrartcl : class script-article
+\usepackage[T1]{fontenc}% :allows the user to select font encodings,
+\usepackage[ngerman]{babel}%https://ctan.org/pkg/
+\usepackage{lmodern}%https://ctan.org/pkg/
+\usepackage{microtype}%https://ctan.org/pkg/
+\usepackage[margin=23mm,headheight=16pt]{geometry}%https://ctan.org/pkg/
+\usepackage{xcolor}%https://ctan.org/pkg/
+\usepackage{booktabs}%https://ctan.org/pkg/
+\usepackage{tabularx}%https://ctan.org/pkg/
+\usepackage{longtable}%https://ctan.org/pkg/
+\usepackage{array}%https://ctan.org/pkg/
+\usepackage{enumitem}%https://ctan.org/pkg/
+\usepackage{csquotes}%https://ctan.org/pkg/
+\usepackage{listings}%https://ctan.org/pkg/
+\usepackage[most]{tcolorbox}%https://ctan.org/pkg/
+\usepackage{amsmath}%https://ctan.org/pkg/
+\usepackage{siunitx}%https://ctan.org/pkg/
+\usepackage[automark,headsepline]{scrlayer-scrpage}%https://ctan.org/pkg/
+\usepackage{hyperref}%https://ctan.org/pkg/
+\sisetup{locale=DE}
+
+\definecolor{SFNnavy}{HTML}{18354F}
+\definecolor{SFNteal}{HTML}{147F88}
+\definecolor{SFNlight}{HTML}{F1F6F8}
+\definecolor{SFNcode}{HTML}{F7F9FA}
+\hypersetup{colorlinks=true,linkcolor=SFNnavy,urlcolor=SFNteal,pdftitle={LaTeX-Rezeptbuch fuer Forschungsarbeiten}}
+\setkomafont{section}{\color{SFNnavy}\Large\bfseries}
+\setkomafont{subsection}{\color{SFNnavy}\large\bfseries}
+\setkomafont{disposition}{\color{SFNnavy}\bfseries}
+\clearpairofpagestyles
+\ihead{SFN · LaTeX-Rezeptbuch}
+\ohead{\headmark}
+\cfoot{\pagemark}
+\setlist{itemsep=2pt,topsep=2pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\rezept}[1]{\textsf{#1}}
+\lstdefinestyle{latexbook}{
+  language=[LaTeX]TeX,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{SFNteal},
+  commentstyle=\color{black!52},
+  stringstyle=\color{SFNnavy},
+  backgroundcolor=\color{SFNcode},
+  frame=single, rulecolor=\color{black!20},
+  framesep=7pt, breaklines=true, breakatwhitespace=false,
+  columns=fullflexible, keepspaces=true,
+  showstringspaces=false,
+  numbers=left, numberstyle=\tiny\color{black!45},
+  xleftmargin=1.5em, framexleftmargin=1.5em,
+  literate=
+  {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {ß}{{\ss}}1
+  {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+}
+\lstset{style=latexbook}
+\newtcolorbox{merkbox}[1][]{
+  enhanced,breakable,colback=SFNlight,colframe=SFNteal,
+  boxrule=.6pt,arc=1.5mm,left=3mm,right=3mm,
+  fonttitle=\bfseries,title={Merke},#1}
+\newtcolorbox{aufgabebox}[1][]{
+  enhanced,breakable,colback=white,colframe=SFNnavy!70,
+  boxrule=.6pt,arc=1.5mm,left=3mm,right=3mm,
+  fonttitle=\bfseries,title={Selbst ausprobieren},#1}
+\newcommand{\mwe}[2]{%
+  \noindent\textbf{MWE-Datei (separat kompilierbar):} \path{#1}\par\vspace{-4pt}
+  \lstinputlisting[caption={#2},captionpos=b]{#1}
+}
+
+\begin{document}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \vspace*{2cm}
+  {\color{SFNteal}\rule{3.5cm}{2.2pt}}\par\vspace{1cm}
+  {\Huge\bfseries\color{SFNnavy}LaTeX-Rezeptbuch\par}
+  \vspace{.35cm}
+  {\LARGE Für naturwissenschaftliche Forschungsarbeiten\par}
+  \vspace{1.5cm}
+  {\Large Vier Workshoptermine · jeweils 120 Minuten\par}
+  \vspace{1cm}
+  Vom Titelblatt über Abbildungen, Messwerttabellen und Gleichungen
+  bis zu korrekt belegten Quellen und einem vollständigen Dokument.
+  \vfill
+  \begin{tcolorbox}[colback=SFNlight,colframe=SFNteal,boxrule=.5pt,arc=2mm]
+  \textbf{Arbeitsprinzip:} Ein Rezept lesen · die Datei kompilieren · eine
+  Änderung ausprobieren · den Baustein in die eigene Forschungsarbeit übernehmen.
+  \end{tcolorbox}
+  \vspace{1.4cm}
+  \textbf{SFN LaTeX-Workshop}\hfill Stand: 28. Oktober 2026
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{So benutzt du dieses Buch}
+Dieses Buch ist \emph{kein} Lehrtext, den du von vorne bis hinten abschreiben sollst.
+Es ist eine Sammlung von \textbf{Rezepten}: Jedes Rezept löst genau ein typisches
+Problem beim Schreiben einer Forschungsarbeit. Der Quelltext steht immer direkt
+im Buch und liegt außerdem als eigenständige Datei im Ordner \texttt{rezepte/}.
+
+\begin{merkbox}
+\textbf{MWE} bedeutet \emph{Minimal Working Example}: ein möglichst kleines,
+aber funktionierendes LaTeX-Dokument mit \texttt{\textbackslash documentclass},
+Präambel und \texttt{document}-Umgebung. Es lässt sich unabhängig von den anderen
+Beispielen kompilieren, sofern die mitgelieferten Bilder bzw. Daten am angegebenen
+Ort liegen. Kopiere für dein Projekt nur die benötigten Pakete in die
+\textbf{Präambel} und den eigentlichen Inhalt in den \textbf{Dokumentkörper}.
+\end{merkbox}
+
+\textbf{Ordnerstruktur:}
+\begin{lstlisting}[language={},numbers=none]
+rezeptbuch.tex                 dieses Buch
+beispiel-forschungsarbeit.tex komplettes Muster
+rezepte/                      13 einzelne MWEs
+literatur.bib                 Beispiel-Quellen
+bilder/messaufbau.png         frei nutzbares Schema
+daten/messwerte.csv           erfundene Messwerte
+kapitel/anhang_messprotokoll.tex  ausgelagerter Anhang
+README.md                     Startanleitung
+\end{lstlisting}
+
+\textbf{Kompilieren:} Öffne den \emph{gesamten} Projektordner in VS Code.
+Die im Folgenden angegebenen Terminalbefehle werden im \emph{Projekt-Hauptordner}
+ausgeführt, weil Bild-, Daten- und Bib-Dateien über relative Pfade verknüpft sind.
+Ein Beispiel ohne Literaturverzeichnis benötigt in der Regel zwei LaTeX-Läufe
+für das Inhaltsverzeichnis und die Querverweise. Das Quellenrezept braucht Biber
+(siehe Rezept~\ref{subsec:biber}).
+
+\section{Welche Elemente gehören in eine Forschungsarbeit?}
+\label{sec:elemente}
+Die folgende Übersicht ist zugleich eine \textbf{Packliste}. Nicht jede Arbeit
+braucht jedes Element; maßgeblich sind die Vorgaben der betreuenden Schule bzw.
+des Wettbewerbs. \textbf{P0} ist unverzichtbare Grundlage, \textbf{P1} häufig
+nützlich, \textbf{P2} eine freiwillige Vertiefung.
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{8pt}
+\begin{longtable}{@{}p{.24\linewidth}p{.30\linewidth}p{.28\linewidth}p{.08\linewidth}@{}}
+\toprule
+\textbf{Element / Objekt} & \textbf{Befehle / Umgebungen} & \textbf{Paket / Zuständigkeit} & \textbf{Prio}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Element / Objekt} & \textbf{Befehle / Umgebungen} & \textbf{Paket / Zuständigkeit} & \textbf{Prio}\\
+\midrule\endhead
+Dokumentenklasse, Seitenformat & \texttt{\textbackslash documentclass} & \pkg{scrartcl} (KOMA-Script), bei Bedarf \pkg{geometry} & P0\\
+Titelblatt, Metadaten & \texttt{titlepage}, \texttt{\textbackslash centering} & LaTeX/KOMA-Script & P0\\
+Zusammenfassung / Abstract & \texttt{abstract} & Dokumentenklasse & P0\\
+Kapitel und Gliederung & \texttt{\textbackslash section}, \texttt{\textbackslash subsection} & LaTeX/KOMA-Script & P0\\
+Inhaltsverzeichnis & \texttt{\textbackslash tableofcontents} & LaTeX/KOMA-Script & P0\\
+Absätze und Hervorhebung & Leerzeile, \texttt{\textbackslash emph} & LaTeX; \pkg{microtype} für Feinsatz & P0\\
+Nummerierte / unnummerierte Listen & \texttt{enumerate}, \texttt{itemize} & LaTeX; \pkg{enumitem} zur Anpassung & P0\\
+Zitate / Fußnoten & \texttt{\textbackslash enquote}, \texttt{\textbackslash footnote} & \pkg{csquotes}, LaTeX & P1\\
+Grafiken / Fotos / Skizzen & \texttt{\textbackslash includegraphics} & \pkg{graphicx} & P0\\
+Bildunterschriften & \texttt{figure}, \texttt{\textbackslash caption} & LaTeX; optional \pkg{caption} & P0\\
+Tabellen und Beschriftungen & \texttt{table}, \texttt{tabular} & \pkg{booktabs}, \pkg{tabularx} & P0\\
+Querverweise & \texttt{\textbackslash label}, \texttt{\textbackslash ref}, \texttt{\textbackslash eqref} & LaTeX; \pkg{hyperref}, optional \pkg{cleveref} & P0\\
+Mathematische Formeln & \texttt{equation}, \texttt{align} & \pkg{amsmath}, ggf. \pkg{amssymb} & P0*\\
+Messwerte und SI-Einheiten & \texttt{\textbackslash num}, \texttt{\textbackslash qty}, \texttt{\textbackslash si} & \pkg{siunitx} v3 & P0*\\
+Quelltext / Programmlistings & \texttt{lstlisting} & \pkg{listings} & P1\\
+Diagramme aus Messdaten & \texttt{tikzpicture}, \texttt{axis} & \pkg{pgfplots} & P1\\
+Belege / Zitate im Text & \texttt{\textbackslash parencite}, \texttt{\textbackslash textcite} & \pkg{biblatex} und \pkg{biber} & P0\\
+Quellenverzeichnis & \texttt{\textbackslash printbibliography} & \pkg{biblatex}, externe \texttt{.bib}-Datei & P0\\
+Anhänge / Dateien aufteilen & \texttt{\textbackslash appendix}, \texttt{\textbackslash input} & LaTeX & P1\\
+Unterabbildungen & \texttt{subfigure} & \pkg{subcaption} & P2\\
+Kopf- und Fußzeilen & \texttt{\textbackslash ihead}, \texttt{\textbackslash cfoot} & \pkg{scrlayer-scrpage} & P2\\
+Abbildungs- / Tabellenverzeichnis & \texttt{\textbackslash listoffigures}, \texttt{\textbackslash listoftables} & LaTeX & P2\\
+Lange Tabellen über Seiten & \texttt{longtable} & \pkg{longtable} & P2\\
+Eigenständigkeitserklärung & \texttt{\textbackslash section*} & LaTeX; nur wenn vorgeschrieben & P1\\
+Akronyme / Abkürzungen & \texttt{description}, ggf. Glossarpaket & zunächst LaTeX, später \pkg{glossaries-extra} & P2\\
+\bottomrule
+\end{longtable}
+}
+\noindent\textit{* P0 für quantitativ-naturwissenschaftliche Arbeiten; in rein
+beschreibenden Arbeiten ggf. nicht nötig.}
+
+\section{Die Reihenfolge in vier Terminen}
+\label{sec:termine}
+Die Workshopzeit umfasst \textbf{8 Stunden insgesamt}. In jeder Sitzung
+entsteht ein neuer Teil \emph{derselben} Muster-Forschungsarbeit. Die MWEs sind
+zum Nachschlagen gedacht; im Unterricht werden nicht alle einzeln abgeschrieben.
+
+\begin{tcolorbox}[colback=SFNlight,colframe=SFNteal,title={Termin 1 · Das lesbare Dokument (120 Min.)},fonttitle=\bfseries]
+\textbf{0--15} Forschungsarbeit als Dokumentstruktur verstehen ·
+\textbf{15--40} Titelseite, Abstract, Grundgerüst (R01) ·
+\textbf{40--65} Überschriften, Inhaltsverzeichnis, erste Labels (R02) ·
+\textbf{65--85} Absätze, Listen und Zitate (R03) ·
+\textbf{85--115} eigene Einleitung und Methodenstruktur erstellen ·
+\textbf{115--120} Sicherung und Ausblick.\\
+\textbf{Ergebnis:} Titelblatt, Abstract, Inhaltsverzeichnis, vier bis fünf
+fachlich sinnvolle Abschnitte und erste Textseiten.
+\end{tcolorbox}
+\begin{tcolorbox}[colback=SFNlight,colframe=SFNteal,title={Termin 2 · Ergebnisse sichtbar machen (120 Min.)},fonttitle=\bfseries]
+\textbf{0--15} Wiederholung und Dateistruktur ·
+\textbf{15--55} Abbildungen, Beschriftungen, \texttt{label/ref} (R04) ·
+\textbf{55--85} saubere Messwerttabellen (R05) ·
+\textbf{85--110} eigene Abbildung und eigene Tabelle einsetzen ·
+\textbf{110--120} typische Fehler beheben und Zwischenstand prüfen.\\
+\textbf{Ergebnis:} mindestens eine beschriftete Abbildung und eine Tabelle,
+beide im Fließtext referenziert. Schnelle Teams: R12.
+\end{tcolorbox}
+\begin{tcolorbox}[colback=SFNlight,colframe=SFNteal,title={Termin 3 · Wissenschaftliche Inhalte setzen (120 Min.)},fonttitle=\bfseries]
+\textbf{0--15} Rückblick: Ergebnisse und Referenzen ·
+\textbf{15--45} Formeln und Gleichungsnummern (R06) ·
+\textbf{45--65} Zahlen, Messwerte und Einheiten (R07) ·
+\textbf{65--85} Programmcodes oder Auswertungsmethode (R08) ·
+\textbf{85--110} eigene Auswertung schreiben ·
+\textbf{110--120} Literaturdatenbank für Termin 4 anlegen.\\
+\textbf{Ergebnis:} nachvollziehbare Methode und Auswertung mit konsistenten
+Einheiten; Code nur, wenn fachlich relevant. Optional R10 (CSV-Diagramm).
+\end{tcolorbox}
+\begin{tcolorbox}[colback=SFNlight,colframe=SFNteal,title={Termin 4 · Quellen, Anhang, Abschluss (120 Min.)},fonttitle=\bfseries]
+\textbf{0--15} Was muss belegt werden? ·
+\textbf{15--45} \texttt{.bib}, Zitieren und Biber-Lauf (R09) ·
+\textbf{45--60} Anhang, Mehrdateienprinzip (R11) ·
+\textbf{60--105} vollständige Forschungsarbeit zusammensetzen und prüfen ·
+\textbf{105--120} Peer-Review, PDF-Endkontrolle, Abgabe-Check.\\
+\textbf{Ergebnis:} vollständiges kompilierbares Dokument vom Titelblatt bis
+zum Quellenverzeichnis, bei Bedarf mit Anhang.
+\end{tcolorbox}
+
+\begin{merkbox}
+\textbf{Didaktische Entscheidung:} Zuerst die \emph{Dokumentstruktur}, dann
+\emph{wissenschaftliche Objekte}, erst danach \emph{Feingestaltung}.
+Querverweise werden parallel zu Abbildungen und Tabellen eingeführt, nicht als
+isoliertes Thema. Quellenangaben erhalten einen eigenen Arbeitsblock, da die
+zusätzliche Biber-Verarbeitung Fehlerquellen mitbringt. Für schnellere Gruppen
+liegen optionale Rezepte bereit.
+\end{merkbox}
+
+\clearpage
+\section{Termin 1: Grundgerüst und Text}
+
+\subsection{R01 · Titelblatt, Zusammenfassung und Inhaltsverzeichnis}
+\textbf{Du brauchst:} \pkg{scrartcl}, \pkg{babel}, \pkg{microtype}; für klickbare
+Links \pkg{hyperref}. \textbf{Warum:} Die Struktur wird später automatisch
+verwaltet. Im Titelblatt stehen frei anpassbare Platzhalter.
+\mwe{rezepte/01_grundgeruest.tex}{R01: eine komplette, kurze Forschungsarbeit als Startgerüst}
+\begin{aufgabebox}
+Ändere den Titel und die Forschungsfrage; ergänze unter
+\enquote{Methode} zwei Unterabschnitte und erzeuge ein neues PDF.
+Prüfe, ob das Inhaltsverzeichnis aktualisiert wird.
+\end{aufgabebox}
+
+\subsection{R02 · Überschriften und Querverweise}
+\textbf{Du brauchst:} \texttt{\textbackslash section},
+\texttt{\textbackslash subsection}, \texttt{\textbackslash label},
+\texttt{\textbackslash ref}; \pkg{hyperref} macht Verweise klickbar.
+Setze das Label \emph{direkt hinter} die Überschrift.
+\mwe{rezepte/02_gliederung.tex}{R02: Gliederung und Abschnittsverweis}
+\begin{merkbox}
+\textbf{Keine Abschnittsnummern von Hand schreiben.} Bei einer Umstellung der
+Gliederung ändern sich Nummerierung und Querverweise automatisch. Das gelingt
+in der Regel erst nach einem weiteren LaTeX-Lauf.
+\end{merkbox}
+
+\subsection{R03 · Absätze, Zitate, Aufzählungen und Fußnoten}
+\textbf{Du brauchst:} \pkg{csquotes} für sprachabhängige Anführungszeichen;
+\pkg{enumitem} für saubere nummerierte Listen. Eine Leerzeile beginnt einen
+neuen Absatz; \texttt{\textbackslash\textbackslash} ist \emph{kein} Ersatz.
+\mwe{rezepte/03_text_und_listen.tex}{R03: verständlicher Fließtext und strukturierte Listen}
+\begin{aufgabebox}
+Schreibe in drei Sätzen die Hypothese deiner Arbeit.
+Füge anschließend eine Materialliste und einen nummerierten Versuchsablauf hinzu.
+\end{aufgabebox}
+
+\section{Termin 2: Abbildungen und Tabellen}
+\subsection{R04 · Ein Bild mit Quellenbezug und Referenz}
+\textbf{Du brauchst:} \pkg{graphicx}; eine \texttt{figure}-Umgebung,
+\texttt{\textbackslash caption} und \texttt{\textbackslash label}.
+\texttt{[htbp]} bedeutet nur bevorzugte Platzierung, keine feste Position.
+Beschreibe im Text, \emph{warum} die Abbildung relevant ist.
+\mwe{rezepte/04_abbildung.tex}{R04: Bild einfügen, beschriften und im Text referenzieren}
+\begin{merkbox}
+Bilder benötigen eine Herkunftsangabe, wenn du sie nicht selbst erstellt hast.
+Die \emph{Beschriftung} ist nicht automatisch ein urheberrechtlicher
+Nutzungsnachweis. Nutze eigene Bilder oder zulässig lizenzierte Grafiken und
+notiere ggf. Lizenz sowie Urheber. Das mitgelieferte Schema ist eigens für
+unseren Kurs gezeichnet.
+\end{merkbox}
+
+\subsection{R05 · Eine lesbare Messwerttabelle}
+\textbf{Du brauchst:} \pkg{booktabs} für klare horizontale Linien,
+\pkg{tabularx} für anpassbare Spaltenbreite und \pkg{siunitx} zum
+Ausrichten von Zahlen. \texttt{S}-Spalten erwarten Eingaben wie
+\texttt{65.0}, geben bei \texttt{locale=DE} aber \num{65.0} aus.
+\mwe{rezepte/05_tabelle.tex}{R05: typografisch saubere Messwerttabelle}
+
+\begin{tcolorbox}[colback=white,colframe=black!30,title={So sieht eine Messwerttabelle aus},fonttitle=\bfseries]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Messpunkt & Zeit (min) & Temperatur (°C)\\
+\midrule
+Start & 0 & 65,0\\
+Mitte & 10 & 52,4\\
+Ende & 20 & 44,1\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\begin{aufgabebox}
+Tausche das Beispielbild gegen eine eigene Abbildung aus und übertrage
+mindestens drei eigene Messwerte in eine Tabelle. Füge in beiden Fällen
+\texttt{caption} und \texttt{label} hinzu und referenziere sie im Text.
+\end{aufgabebox}
+
+\section{Termin 3: Formeln, Einheiten und Methoden}
+\subsection{R06 · Mathematische Formeln mit Nummern}
+\textbf{Du brauchst:} \pkg{amsmath}. Für einzelne Formeln verwende
+\texttt{equation}; mehrere zusammengehörige Rechenschritte werden mit
+\texttt{align} ausgerichtet. \texttt{\textbackslash eqref} setzt passende Klammern.
+\mwe{rezepte/06_formeln.tex}{R06: Mittelwert, Summenzeichen und Formelverweis}
+\noindent\textbf{Als Satzbild:}
+\begin{equation}\label{eq:demo}
+\overline T=\frac{1}{n}\sum_{i=1}^{n} T_i.
+\end{equation}
+
+\subsection{R07 · Zahlen, Messwerte und SI-Einheiten}
+\textbf{Du brauchst:} \pkg{siunitx} \emph{Version 3}.
+Die heute empfohlene Schreibweise ist \texttt{\textbackslash qty}, nicht die
+ältere \texttt{\textbackslash SI}. Mit \texttt{locale=DE} werden
+Dezimalkommas korrekt gesetzt.
+\mwe{rezepte/07_einheiten.tex}{R07: Größen, Zahlen und SI-Einheiten normgerecht setzen}
+
+\subsection{R08 · Programmcode dokumentieren}
+\textbf{Du brauchst:} \pkg{listings}. Verwende diesen Baustein nur, wenn
+Code zur Reproduzierbarkeit der Arbeit beiträgt. Lange Listings gehören oft in
+den Anhang oder ein Repository.
+\mwe{rezepte/08_programmcode.tex}{R08: Python-Code mit Zeilennummern darstellen}
+
+\subsection{R10 · Aus einer CSV-Datei ein Diagramm erzeugen (optional)}
+\textbf{Du brauchst:} \pkg{pgfplots}. Das Paket liest Zahlen aus einer
+Textdatei; bei Änderungen an der Datei entsteht das Diagramm beim nächsten
+Kompilieren neu. Für Einsteiger ist auch ein aus Python exportiertes PDF/PNG
+plus \pkg{graphicx} völlig ausreichend.
+\mwe{rezepte/10_diagramm.tex}{R10: reproduzierbares Diagramm aus fünf CSV-Messwerten}
+\begin{aufgabebox}
+Füge in die Beispielarbeit eine eigene Gleichung oder einen Rechenschritt ein.
+Verwende für jeden numerischen Messwert im Fließtext eine passende Einheit.
+\end{aufgabebox}
+
+\section{Termin 4: Quellen, Anhang und vollständige Abgabe}
+\subsection{R09 · Quellen sammeln, zitieren und drucken}
+\label{subsec:biber}
+\textbf{Du brauchst:} \pkg{biblatex} (Zitierstil), das Programm \pkg{biber}
+(Bibliografieverarbeitung), \pkg{csquotes} und eine Datei \texttt{literatur.bib}.
+Quellenschlüssel wie \texttt{jcgm2008} verweisen auf einen Eintrag in der
+Literaturdatenbank. Die Angaben in unserer \texttt{.bib}-Datei sind Beispiele:
+Für die eigene Forschungsarbeit müssen sie durch tatsächlich verwendete
+Originalquellen ergänzt bzw. ersetzt werden.
+\mwe{rezepte/09_quellen.tex}{R09: Literaturzitate und automatisches Quellenverzeichnis}
+
+\textbf{Datei \texttt{literatur.bib} (Auszug):}
+\lstinputlisting[language={},firstline=1,lastline=7,caption={Ein BibLaTeX-Datensatz},captionpos=b]{literatur.bib}
+
+\textbf{Die nötigen Verarbeitungsschritte, im Hauptordner:}
+\begin{lstlisting}[language={},numbers=none]
+pdflatex rezepte/09_quellen.tex
+biber 09_quellen
+pdflatex rezepte/09_quellen.tex
+pdflatex rezepte/09_quellen.tex
+\end{lstlisting}
+Alternativ übernimmt \texttt{latexmk -pdf rezepte/09\_quellen.tex} die
+Abhängigkeitsprüfung und ruft Biber üblicherweise automatisch auf.
+\begin{merkbox}
+\texttt{biblatex} mit \texttt{backend=biber} verwendet \emph{nicht}
+\texttt{bibtex}. Erscheint \enquote{Citation undefined} oder kein Verzeichnis,
+prüfe zuerst den Biber-Lauf und die Schreibweise des Zitierschlüssels.
+Auch Websites, Bildquellen und Datensätze müssen nach den geltenden
+Vorgaben nachvollziehbar nachgewiesen werden.
+\end{merkbox}
+
+\subsection{R11 · Einen Anhang anlegen und Dateien auslagern}
+\textbf{Du brauchst:} keine weiteren Pakete. \texttt{\textbackslash appendix} beginnt die Anhangsgliederung. Mit \texttt{\textbackslash input} kann
+ein Kapitel aus einer anderen Datei eingebunden werden, ohne deren Inhalt
+zu kopieren.
+\mwe{rezepte/11_anhang_mehrere_dateien.tex}{R11: Anhang und ausgelagertes Messprotokoll}
+\textbf{Der Inhalt der eingebundenen Datei:}
+\lstinputlisting[caption={kapitel/anhang\_messprotokoll.tex},captionpos=b]{kapitel/anhang_messprotokoll.tex}
+\begin{merkbox}
+Ein Quellenverzeichnis steht in vielen Forschungsarbeiten \emph{vor} dem Anhang.
+Andere Einrichtungen verlangen eine andere Reihenfolge. Richte dich nach den
+verbindlichen lokalen Vorgaben; LaTeX kann beides.
+\end{merkbox}
+
+\subsection{Das vollständige Musterprojekt}
+Öffne \texttt{beispiel-forschungsarbeit.tex}. Dort findest du Titelblatt,
+Abstract, Inhaltsverzeichnis, eine Abbildung, eine Tabelle, eine Formel,
+Zitate, Quellenverzeichnis und einen eingebundenen Anhang in \emph{einem}
+Dokument. Es ist eine \textbf{Demonstration mit erfundenen Messwerten} und darf
+nicht als eigener wissenschaftlicher Befund ausgegeben werden.
+
+\textbf{Starten (mit Biber):}
+\begin{lstlisting}[language={},numbers=none]
+latexmk -pdf beispiel-forschungsarbeit.tex
+\end{lstlisting}
+
+\begin{aufgabebox}[title={Abschlussaufgabe: eure eigene Forschungsarbeit}]
+Erstellt eine durchgängig kompilierbare Arbeit, die folgende Kriterien erfüllt:
+\begin{enumerate}
+\item Titelblatt mit Name und Thema, Zusammenfassung und Inhaltsverzeichnis.
+\item Fachlich sinnvolle Gliederung: Frage, Methode, Ergebnisse,
+      Diskussion und Fazit.
+\item Mindestens eine Abbildung und eine Messwerttabelle mit Beschriftung
+      sowie Referenzen aus dem Text.
+\item Wenn fachlich erforderlich: Gleichung, Rechenweg, Zahlen mit Einheiten
+      und/oder reproduzierbarer Programmcode.
+\item Mindestens zwei \emph{tatsächlich verwendete} Quellen, im Text zitiert
+      und im Verzeichnis vorhanden (bei echten Arbeiten nach Quellenlage).
+\item Keine offenen LaTeX-Fehler, ungeklärten Verweise oder unbelegten
+      fremden Bilder; fertiges PDF kontrolliert.
+\end{enumerate}
+\end{aufgabebox}
+
+\section{Optionale Rezepte für schnellere Teams}
+\subsection{R12 · Zwei Unterabbildungen nebeneinander}
+Nützlich für Vorher-nachher-Vergleiche oder unterschiedliche Mikroskopbilder.
+\pkg{subcaption} ermöglicht separat beschriftete Teilbilder.
+\mwe{rezepte/12_unterabbildungen.tex}{R12: zwei Teilbilder mit eigenen Labels}
+
+\subsection{R13 · Kopfzeile und Seitenzahlen}
+Die KOMA-Script-Erweiterung \pkg{scrlayer-scrpage} ist für unsere
+\pkg{scrartcl}-Klasse die passende Lösung. Ein überladenes Layout lenkt von
+der Forschung ab; setze diese Formatierung erst zum Schluss ein.
+\mwe{rezepte/13_kopf_und_fuss.tex}{R13: zurückhaltende Kopf- und Fußzeilen}
+
+\section{Fehlerdiagnose und letzte Qualitätskontrolle}
+\noindent\begin{tabularx}{.97\linewidth}{@{}p{.32\linewidth}Y@{}}
+\toprule
+\textbf{Symptom} & \textbf{Prüfen / beheben}\\
+\midrule
+\enquote{File not found} & Dateiname, Schreibweise, Projekt-Hauptordner und relativen Pfad prüfen.\\
+\enquote{Undefined control sequence} & Fehlt ein Paket? Ist der Befehl korrekt geschrieben? Ist die Paketversion geeignet?\\
+\enquote{Reference undefined / ??} & \texttt{label} und \texttt{ref} müssen identisch sein; zwei LaTeX-Läufe durchführen.\\
+\enquote{Citation undefined} & Zitierschlüssel und \texttt{.bib}-Pfad prüfen, Biber ausführen und LaTeX erneut starten.\\
+Bild erscheint auf anderer Seite & \texttt{figure} ist ein Gleitobjekt. Nicht alle Bilder mit \texttt{[H]} erzwingen; lieber sinnvoll im Text referenzieren.\\
+Tabelle läuft über den Rand & Spalten mit \pkg{tabularx} oder geringerer Inhaltstiefe anpassen, nicht einfach winzig skalieren.\\
+Übervolle Box & Fehlermeldung \enquote{Overfull \textbackslash hbox} suchen; zu lange Wörter, URLs oder Tabellen prüfen.\\
+\bottomrule
+\end{tabularx}
+
+\begin{merkbox}[title={Vor der Abgabe abhaken}]
+Die Arbeit ist wissenschaftlich klar gegliedert, alle Bilder und Tabellen werden
+im Text erklärt, Messwerte besitzen passende Einheiten, fremde Leistungen sind
+belegt, Quellenverzeichnis und Zitate sind konsistent, das PDF enthält keine
+leeren Platzhalter oder \texttt{??}. Inhaltliche Qualität ist wichtiger als
+ein besonders dekoratives Layout.
+\end{merkbox}
+
+\section{Weiterführende Dokumentation}
+Die offizielle Dokumentation ist die verlässlichste Referenz für Paketbefehle:
+\begin{itemize}
+  \item \url{https://ctan.org/pkg/koma-script} – Dokumentenklassen und Layout.
+  \item \url{https://ctan.org/pkg/graphicx} – Bildimport.
+  \item \url{https://ctan.org/pkg/booktabs} – Tabellensatz.
+  \item \url{https://ctan.org/pkg/siunitx} – Zahlen und SI-Einheiten.
+  \item \url{https://ctan.org/pkg/amsmath} – Mathematischer Formelsatz.
+  \item \url{https://ctan.org/pkg/biblatex} – Quellenverzeichnis und Zitate.
+  \item \url{https://ctan.org/pkg/pgfplots} – Diagramme aus Daten.
+\end{itemize}
+
+\end{document}

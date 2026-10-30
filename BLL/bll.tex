@@ -1,0 +1,46 @@
+% !TeX program = pdflatex
+% !BIB program = biber
+% ================================================================
+% BESONDERE LERNLEISTUNG (BLL) – VORLAGE FUER HESSEN / SFN
+% EINSTIEG: 1) angaben.tex bearbeiten 2) kapitel/*.tex anpassen
+%          3) bll.tex kompilieren (LaTeX -> Biber -> LaTeX x2)
+% ================================================================
+\documentclass[12pt,a4paper,oneside,headings=normal,numbers=noenddot,
+               parskip=half,listof=totoc]{scrreprt}
+
+\input{angaben.tex}
+\input{gestaltung.tex}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\input{titelseite.tex}
+\hypersetup{pageanchor=true}
+
+%\pagenumbering{Roman}
+\pagestyle{scrheadings}
+\input{kapitel/00_kurzfassung.tex}
+\begingroup\singlespacing\small\tableofcontents\endgroup
+% OPTIONAL: bei mehreren Abbildungen bzw. Tabellen aktivieren:
+\listoffigures%
+\listoftables%
+\cleardoublepage
+%\pagenumbering{arabic}
+
+% HAUPTTEIL: Forschungsfrage -> Methode -> Befund -> Bewertung
+\input{kapitel/01_einleitung.tex}
+\input{kapitel/02_theorie.tex}
+\input{kapitel/03_methodik.tex}
+\input{kapitel/04_ergebnisse.tex}
+\input{kapitel/05_diskussion.tex}
+\input{kapitel/06_fazit.tex}
+
+\printbibliography[heading=bibintoc,title={Literatur- und Quellenverzeichnis}]
+
+\appendix
+\input{anhang/01_protokoll.tex}
+% OPTIONAL: nur bei eigenem Programmcode die Zeile aktivieren:
+\input{anhang/02_programmcode.tex}
+
+\cleardoublepage
+\input{selbststaendigkeit.tex}
+\end{document}
