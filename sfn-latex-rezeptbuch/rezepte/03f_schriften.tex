@@ -1,0 +1,52 @@
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[ngerman]{babel}
+\usepackage{fontspec}
+
+% Standardschriftfamilien
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+
+% Zusätzliche Schriftfamilie
+\newfontfamily\MeineSchrift{Latin Modern Sans}
+
+\begin{document}
+
+\section{Moderne Schriftverwaltung}
+
+Dies ist die Standardschrift
+Latin Modern Roman.
+
+\bigskip
+
+{\sffamily
+Dies ist die serifenlose Schrift.\par}
+
+\bigskip
+
+{\ttfamily
+Dies ist die Monospace-Schrift.\par}
+
+\bigskip
+
+% Benutzerdefinierte Schriftfamilie
+{\MeineSchrift
+Dies ist eine separat definierte Schrift.\par}
+
+\bigskip
+
+% Exakte Schriftgroesse
+{\MeineSchrift
+ \fontsize{16.5pt}{20pt}\selectfont
+ Serifenlose Schrift mit 16,5 pt.\par}
+
+\bigskip
+
+% Kombination verschiedener Eigenschaften
+{\bfseries\itshape
+ \fontsize{18pt}{22pt}\selectfont
+ Fett, kursiv und 18 pt gross.\par}
+
+\end{document}

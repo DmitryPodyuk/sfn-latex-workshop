@@ -1,0 +1,37 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+
+% =========================================
+\section{Bilder zuschneiden}
+% =========================================
+Der Zuschnitt ist in Abbildung~\ref{fig:zuschnitt} gezeigt.
+	
+\begin{figure}[htbp]
+	\centering
+	% Originalbild (links)
+	\begin{minipage}[c]{0.46\linewidth}
+		\centering
+		\includegraphics[
+		width=\linewidth
+		]{example-image}
+	\end{minipage}%
+	\hfill
+	% Zugeschnittenes Bild (rechts)
+	\begin{minipage}[c]{0.46\linewidth}
+		\centering
+		\includegraphics[
+		width=\linewidth,
+		trim=2cm 1cm 2cm 1cm,
+		clip
+		]{example-image}
+	\end{minipage}
+	
+	\caption{Originalbild (links) und zugeschnittenes Bild (rechts)}
+	\label{fig:zuschnitt}
+\end{figure}
+
+\end{document}

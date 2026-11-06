@@ -1,0 +1,33 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption} %erforderlich für subfigure
+
+
+\begin{document}
+
+	% =========================================
+	\section{Lange und kurze Bildunterschriften}
+	% =========================================
+	
+	\begin{figure}[htbp]
+		\centering
+		
+		\includegraphics[
+		width=0.65\linewidth
+		]{example-image-c}
+		
+		\caption[Messaufbau]{
+			Darstellung eines Messaufbaus
+			zur Untersuchung eines physikalischen
+			Systems unter definierten Bedingungen.
+			Das Bild dient als Platzhalter.
+		}
+		
+		\label{fig:messaufbau}
+	\end{figure}
+	
+
+\end{document}

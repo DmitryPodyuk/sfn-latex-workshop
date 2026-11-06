@@ -2,9 +2,12 @@
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
+\usepackage{mathtools} %ist erforderlich, um Systeme von Gleichungen zu notieren
+
 \begin{document}
 \section{Auswertung}
-Die mittlere Temperatur ist $\bar T$.
+Die mittlere Temperatur ist $\bar T$ (als inline-Formula). Das ist auch eine in den Text eingebetete Formula: $f(x) = 2.0 \times x^2+45 \times x$. Hier is auch ein gutes Beisoiel für eingebetete Formel:\(\sqrt{x^2+1}\)
+....
 \begin{equation}\label{eq:mittelwert}
   \bar T = \frac{1}{n}\sum_{i=1}^{n}T_i
 \end{equation}
@@ -15,4 +18,145 @@ Mehrere Umformungen werden ausgerichtet:
   \Delta T &= T_{\mathrm{Start}}-T_{\mathrm{Ende}} \\
            &= 65{,}0-44{,}1 = 20{,}9.
 \end{align*}
+
+\begin{align}
+	\intertext{Beispiel: Generalisierte gyroskopische Kräfte:}
+	K_0=\\
+	&\quad -m_1 l_1 L_1 \dot{\theta_1}^2 \cos (\theta_0-\theta_1)\nonumber\\ 
+	&\quad + m_2 l_2 L_2 \dot{\theta_2}^2 \cos (\theta_0-\theta_2)\nonumber\\ \nonumber\\
+	K_1=\\
+	&\quad m_1 L_1 l_1 \dot{\theta_0}^2 \cos (\theta_0-\theta_1)\nonumber\\ \nonumber\\
+	K_2=\\
+	&\quad -m_2 L_2 l_2 \dot{\theta_0}^2 \cos (\theta_0-\theta_2)\nonumber
+\end{align}
+
+Lagrangian:
+\[
+L=\sum_{i=1}^{n}T - \sum_{i=1}^{n}U
+\]
+
+
+\subsection*{Matrix}
+\[
+	\begin{matrix}
+		1 & 0\\
+		0 & 1
+	\end{matrix}
+\]
+
+\begin{displaymath}
+[
+\begin{matrix}
+	1 & 0\\
+	0 & 1
+\end{matrix}
+]
+\end{displaymath}
+
+\begin{equation}
+\left[
+\begin{matrix}
+	1 & 0\\
+	0 & 1
+\end{matrix}
+\right]
+\end{equation}
+
+
+
+
+
+\newpage
+\subsection*{Quadratic Equation \#1}
+\begin{math}
+	\begin{cases}
+		y=a+bx\\
+		R^2=(x-x_0)^2+(y-y_0)^2\\
+		P^2=x_0^2+y_0^2\\
+	\end{cases}
+	\\
+	\newline
+	\newline
+	R^2=x_0^2-2xx_0+x^2+y_0^2-2yy_0+y^2\\
+	\newline
+	x^2(1+b^2)-x2(x_0+b\sqrt{P^2-x_0^2}-ab)+(P^2+a^2-R^2-2a\sqrt{P^2-x_0^2})=0\\
+	\newline
+	D=(2(x_0-b\sqrt{P^2-x_0^2}-ab))^2-4(1+b^2)(P^2+a^2-R^2-2a\sqrt{P^2-x_0^2})\\
+\end{math}
+\newline
+Another way, which is considered to be much better:\\
+\newline
+\begin{math}
+	\begin{cases*}
+		S^2=(x-X_S)^2+(y-X_S)^2\\
+		R^2=(x-x_0)^2+(y-y_0)^2\\
+		P^2=(x_0-0)^2+(y_0-0)^2\\
+	\end{cases*}
+\end{math}
+\\
+\\
+\newline
+\begin{math}
+	\begin{cases*}
+		S^2=(x-x_S)^2+(y-x_S)^2\\
+		R^2=(x-x_R)^2+(y-y_R)^2\\
+		P^2=(x_R-x_P)^2+(y_R-y_P)^2\\
+	\end{cases*}
+\end{math}
+
+\newpage
+\subsection*{Quadratic Equation \#2}
+\begin{math}
+	\begin{cases*}
+		y=a+bx\\
+		R^2=(x-x_0)^2+(y-y_0)^2\\
+	\end{cases*}
+	\\
+	\newline
+	\newline
+	R^2=(x-x_0)^2+((a+bx)-y_0)^2\\
+	\newline
+	R^2=(x-x_0)^2+(bx+(a-y_0))^2\\
+	\newline
+	x^2-2x_0x+x_0^2+b^2x^2+2b(a-y_0)x+(a-y_0)^2-R^2=0\\
+	\newline
+	x^2(1+b^2)+x(2b(a-y_0)-2x_0)+(x_0^2+(a-y_0)^2-R^2)=0\\
+	\newline
+	D = (2(ab-by_0-x_0))^2-4(1+b^2)(x_0^2+(y_0-a)^2-R^2)\\
+	\newline
+	x_1=\frac{-2(ab-by_0-x_0)+\sqrt{D}}{2(1+b^2)}\\
+	x_2=\frac{-2(ab-by_0-x_0)-\sqrt{D}}{2(1+b^2)}\\
+	\newline
+	y=y=a+b(\max(x_1,x_2)) \implies y=y=a+bx_2\\
+	\newline
+	\begin{cases*}
+		x_1=\frac{-2(ab-by_0-x_0)+\sqrt{(2(ab-by_0-x_0))^2-4(1+b^2)(x_0^2+(y_0-a)^2-R^2)}}{2(1+b^2)}\\
+		y=a+b(\frac{-2(ab-by_0-x_0)+\sqrt{(2(ab-by_0-x_0))^2-4(1+b^2)(x_0^2+(y_0-a)^2-R^2)}}{2(1+b^2)})\\
+	\end{cases*}
+	\\
+	\newline
+	\newline
+	x_0=R\cos\alpha\\
+	y_0=R\sin\alpha\\
+	\newline
+	\begin{cases*}
+		x_1=\frac{-2(ab-b(R\sin\alpha)-R\cos\alpha)+\sqrt{(2(ab-b(R\sin\alpha)-R\cos\alpha))^2-4(1+b^2)((R\cos\alpha)^2+((R\sin\alpha)-a)^2-R^2)}}{2(1+b^2)}\\
+		y=a+b(\frac{-2(ab-b(R\sin\alpha)-(R\cos\alpha))+\sqrt{(2(ab-b(R\sin\alpha)-(R\cos\alpha)))^2-4(1+b^2)((R\cos\alpha)^2+((R\sin\alpha)-a)^2-R^2)}}{2(1+b^2)})\\
+	\end{cases*}
+	\newline
+	\newline
+	\newline
+	%1/(1+b^2)*(R*(b*sin(x)+cos(x))*(1-2*a+2*sqrt(R^2*(b*sin(x)+cos(x))^2-2*a*R*(b*cos(x)+sin(x))+a^2)) + R^2*(b*sin(x)+cos(x))^2*(2*a*b+1)-a*b*(a*b+1)-2*a^2)
+	\frac{d}{dx}(\frac{1}{(1+b^2)}((R (b sin(x)+cos(x)) (1-2 a+2 \sqrt{R^2 (b sin(x)+cos(x))^2-2 a R (b cos(x)+sin(x))+a^2})+R^2 (b sin(x)+cos(x))^2 (2 a b+1)-a b (a b+1)-2 a^2)))=
+	\\
+	\newline
+	=\frac{1}{(1+b^2)}\\
+	(R(bcos(x)-sin(x))(2\sqrt{a^2-2 a R (b cos(x)+sin(x))+R^2 (b sin(x)+cos(x))^2}-2 a+1)+\\
+	\frac{R (b sin(x)+cos(x))(2 R^2 (b cos(x)-sin(x)) (b sin(x)+cos(x))-2 a R (cos(x)-b sin(x)))}{\sqrt{a^2-2 a R (b cos(x)+sin(x))+R^2 (b sin(x)+cos(x))^2}}+\\
+	2 R^2 (2 a b+1) (b cos(x)-sin(x)) (b sin(x)+cos(x)))
+	\\
+	\\
+\end{math}
+
+
 \end{document}

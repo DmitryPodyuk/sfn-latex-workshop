@@ -1,0 +1,55 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel} % Deutsche Rechtschreibung
+\usepackage[autostyle=true]{csquotes} % Erkennt babel-Sprache automatisch
+
+\usepackage{enumitem} %für die Listen
+\usepackage{amssymb} %erforderlich für \checkmark in itemize
+%\setlist[enumerate]{label=\arabic*., nosep} % Gilt für alle enumerate-Umgebungen
+
+\begin{document}
+\section{Lesbarer wissenschaftlicher Text}
+Das \emph{Ziel} wird hervorgehoben, ohne den gesamten Absatz fett zu drucken.
+\newline
+\enquote{Exakt zitierte Wörter} brauchen eine Quelle.
+
+\subsection{Listen mit enumerate}
+%TODO: zusätzliche Parameter für enumerate
+\begin{enumerate}
+%\begin{enumerate}[label=\arabic*.]
+%\begin{enumerate}[label=\Alph*), start=4, leftmargin=1.7cm]
+%\begin{enumerate}[label=\roman*), start=1, leftmargin=2cm]	
+  \item Forschungsfrage aufstellen.
+  \item Experiment durchführen.
+  \item Messwerte auswerten.
+\end{enumerate}
+
+\subsection{Listen mit itemize}
+\begin{itemize}
+%\begin{itemize}[label={--}]	%\begin{itemize}[label=\textendash]
+%\begin{itemize}[label=$\rightarrow$]% (erfordert den Mathemodus)
+%\begin{itemize}[label=$\blacksquare$]% (benötigt das Paket amssymb)
+%TODO: kleinere Quadraten
+%\begin{itemize}[label=\checkmark]% (benötigt das Paket amssymb)
+%\begin{itemize}[label={$\ast$}]% oder [label=Info:]
+	
+  \item Sensor
+  \item Messbecher
+\end{itemize}
+
+\begin{itemize}[label=\textendash, nosep, leftmargin=*]
+	\item Ein kompakter Punkt.
+	\item ...und derfekt ausgerichtet.
+\end{itemize}
+
+\begin{itemize}[label=$\square$, itemsep=1ex] % \square benötigt amssymb
+	\item Aufgabe 1 erledigen
+	\item Aufgabe 2 prüfen
+\end{itemize}
+
+
+Eine Fußnote ergänzt den Text.\footnote{Keine wichtigen Ergebnisse in Fußnoten verstecken.}\\
+Zweite Fußnote ergänzt den Text.\footnote{Keine wichtigen Ergebnisse in Fußnoten verstecken.}
+
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+
+\begin{document}
+
+\section{Skalierbare Schrift mit lmodern}
+
+% Normale Schrift
+{\fontsize{10pt}{12pt}\selectfont
+Dies ist ein Text mit 10 pt.\par}
+
+\bigskip
+
+% Nichtstandardisierte Schriftgroesse
+{\fontsize{13.5pt}{17pt}\selectfont
+Dies ist ein Text mit 13,5 pt.\par}
+
+\bigskip
+
+% Grosse Schrift
+{\fontsize{20pt}{24pt}\selectfont
+Dies ist ein Text mit 20 pt.\par}
+
+\bigskip
+
+% Serifenlose Schrift
+{\sffamily\fontsize{15pt}{18pt}\selectfont
+Serifenlose Schrift mit 15 pt.\par}
+
+\bigskip
+
+% Monospace-Schrift
+{\ttfamily\fontsize{12pt}{15pt}\selectfont
+Monospace-Schrift mit 12 pt.\par}
+
+\end{document}

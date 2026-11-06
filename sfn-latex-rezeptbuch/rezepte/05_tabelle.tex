@@ -4,9 +4,23 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{siunitx}
+\usepackage{multirow}
+
 \sisetup{locale=DE}
 \begin{document}
 \section{Messreihe}
+
+\begin{table}[h]
+	\centering
+	\caption{Table with multi-Columns}
+	\begin{tabular}{lcc}
+		Name & Age & Country \\
+		John Doe & 28 & USA \\
+		Jane Smith & 32 & UK \\
+	\end{tabular} 
+\end{table} 
+
+
 \begin{table}[htbp]
   \centering
   \caption{Temperaturabfall während des Versuchs}
@@ -21,4 +35,70 @@
     \bottomrule
   \end{tabularx}
 \end{table}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Experimental Results}
+	\label{tab:results}
+	\begin{tabular}{l c c}
+		\hline
+		Sample & Temp & Yield \\
+		\hline
+		A & 100 & 85 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+%\begin{table}[h!]
+\begin{table}[h!]	
+	\centering
+	\caption{Experimental Results}
+	\begin{tabular}{||c c c c||} 
+		\hline
+		Col1 & Col2 & Col2 & Col3 \\ [0.5ex] 
+		\hline\hline
+		1 & 6 & 87837 & 787 \\ 
+		2 & 7 & 78 & 5415 \\
+		3 & 545 & 778 & 7507 \\
+		4 & 545 & 18744 & 7560 \\
+		5 & 88 & 788 & 6344 \\ [1ex] 
+		\hline
+	\end{tabular}
+\end{table}
+
+
+%\usepackage{multirow}
+\begin{table}
+	\centering
+	\caption{Tabelle mit multi-Spalten (i.e.multi-Columns)}
+	\begin{tabular}{|l|l|l|}
+	
+		\hline
+		\multicolumn{2}{|c|}{Multi-Column} & Column 3 \\
+		\hline
+		\multirow{2}{*}{Multi-Row} & Row 1 & Data 1 \\
+		\cline{2-3}
+		& Row 2 & Data 2 \\
+		\hline
+	\end{tabular}   
+\end{table}
+
+
+%\usepackage{booktabs}
+\begin{table}
+	\centering
+	\caption{Table with multi-Columns}
+
+\begin{tabular}{lrr}
+	\toprule
+	\textbf{Product} & \textbf{Q1} & \textbf{Q2} \\
+	\midrule
+	Product A & \$125,000 & \$142,000 \\
+	Product B & \$98,500 & \$105,000 \\
+	\bottomrule
+\end{tabular}   
+\end{table}   
+
+  
 \end{document}

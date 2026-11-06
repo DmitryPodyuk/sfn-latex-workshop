@@ -1,0 +1,30 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption} %erforderlich für subfigure
+
+
+\begin{document}
+
+	% =========================================
+	\section{Weitere Bildmanipulationen}
+	% =========================================
+	
+	% Skalierung auf 50 Prozent
+	\includegraphics[
+	scale=0.5
+	]{example-image-a}
+	
+	\bigskip
+	
+	% Rotation mit rotatebox
+	\rotatebox[origin=c]{-15}{%
+		\includegraphics[
+		width=0.4\linewidth
+		]{example-image-b}%
+	}
+	
+
+\end{document}

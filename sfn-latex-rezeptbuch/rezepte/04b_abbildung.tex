@@ -1,0 +1,30 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption} %erforderlich für subfigure
+
+
+\begin{document}
+
+% =========================================
+\section{Bilder drehen}
+% =========================================
+Das Drehen von Bildern ist in Abbildung~\ref{fig:drehung} gezeigt.
+	
+	\begin{figure}[htbp]
+		\centering
+		
+		\includegraphics[
+		width=0.48\linewidth,
+		angle=15,
+		origin=c
+		]{example-image-c}
+		
+		\caption{Drehung der Abbildung um 15 Grad gegen den Uhrzeigersinn}
+		
+		\label{fig:drehung}
+	\end{figure}
+
+\end{document}

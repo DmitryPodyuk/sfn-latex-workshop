@@ -1,0 +1,84 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption} %erforderlich für subfigure
+
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{calc}
+
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows}
+
+\usetikzlibrary{
+	calc,
+	intersections,
+	arrows.meta,
+	shapes,
+	quotes,
+	angles,
+	patterns
+}
+
+
+\begin{document}
+
+	% =========================================
+	\section{Parametrische Zeichnungen mit TikZ}
+	% =========================================
+	
+
+%\usetikzlibrary{calc,patterns,angles,decorations.markings,babel,quotes}
+
+
+\selectlanguage{english}
+
+\begin{figure}[htbp]
+	\centering
+
+\begin{tikzpicture}
+
+\coordinate (origo) at (0,0);
+\coordinate (pivot) at (1,5);
+
+% draw axes
+\fill[black] (origo) circle (0.1);
+\draw[thick,gray,->] (origo) -- ++(4,0) node[black,right] {$x$};
+\draw[dashed,thick,gray,-] (origo) -- ++(0,-4);% node (mary) [black,below] {$y_1$};
+
+% draw roof
+\fill[pattern = north east lines] ($ (origo) + (-1,0) $) rectangle ($ (origo) + (1,0.5) $);
+\draw[thick] ($ (origo) + (-1,0) $) -- ($ (origo) + (1,0) $);
+
+\draw[thick] (origo) -- ++(300:3) coordinate (bob);
+\fill (bob) circle (0.2) node[right=0.2cm] {$m_1$};
+
+%\draw[thick] (origo) -- ++(300:3) coordinate (bob);
+\draw[thick] (300:3) -- ++(330:2) coordinate (bob1);
+\fill (bob1) circle (0.2) node[right=0.2cm] {$m_2$};
+
+%\draw pic["$\theta$", draw, angle radius=1.2cm] {angle = mary--origo--bob};
+%\draw pic["$\theta$",draw=red,-,angle eccentricity=1.50,angle radius=1cm] {angle = mary--origo--bob};
+
+\draw [<->] (-90:1.5)  arc (-90:-60:1.5) node [anchor=north,pos=0.5] {$\theta_1$};
+
+\draw[dashed,thick,gray,-] (300:3) coordinate (bob) -- ++(0,-2);% node (mary) [black,below] {$y_2$};
+\draw [<->]  ([shift=(-90:1.5)]bob)  arc (-90:-30:1.5) node [anchor=north,pos=0.5] {$\theta_2$};
+%([shift=(t:r)] x, y) is the proper starting point, where (x,y) is the center and (t:r) is the polar coordinate of starting point.
+%\draw [<->] (-30:1.5)  arc (-90:-60:1.5) node [right,pos=0.5] {$\theta$};
+%\draw (axis cs:.125,0)arc[radius=.25cm,start angle=0,end angle=45];
+
+\end{tikzpicture}
+
+
+    \caption{Doppelpendel mit Winkeln und Massen}
+\label{fig:tikzbeispiel}
+
+\end{figure}
+
+Wie in Abbildung~\ref{fig:tikzbeispiel} dargestellt,
+besteht das Doppelpendel aus zwei Massen.	
+
+\end{document}
