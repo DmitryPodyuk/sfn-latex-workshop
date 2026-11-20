@@ -17,6 +17,7 @@
 \usepackage{siunitx}%https://ctan.org/pkg/
 \usepackage[automark,headsepline]{scrlayer-scrpage}%https://ctan.org/pkg/
 \usepackage{hyperref}%https://ctan.org/pkg/
+
 \sisetup{locale=DE}
 
 \definecolor{SFNnavy}{HTML}{18354F}
@@ -62,8 +63,13 @@
   boxrule=.6pt,arc=1.5mm,left=3mm,right=3mm,
   fonttitle=\bfseries,title={Selbst ausprobieren},#1}
 \newcommand{\mwe}[2]{%
-  \noindent\textbf{MWE-Datei (separat kompilierbar):} \path{#1}\par\vspace{-4pt}
+  \noindent
+%  \begin{minipage}{\linewidth}
+  
+  \textbf{MWE-Datei (separat kompilierbar):} \path{#1}\par\vspace{-4pt}
   \lstinputlisting[caption={#2},captionpos=b]{#1}
+%  \end{minipage}	
+
 }
 
 \begin{document}
@@ -89,6 +95,9 @@
 \end{titlepage}
 
 \tableofcontents
+%\listoffigures
+
+
 \clearpage
 
 \section{So benutzt du dieses Buch}
@@ -263,6 +272,36 @@ Schreibe in drei Sätzen die Hypothese deiner Arbeit.
 Füge anschließend eine Materialliste und einen nummerierten Versuchsablauf hinzu.
 \end{aufgabebox}
 
+\subsection{R03x · Schriftgrößen}
+%\textbf{Du brauchst:} \pkg{csquotes} für sprachabhängige Anführungszeichen;
+%\pkg{enumitem} für saubere nummerierte Listen. Eine Leerzeile beginnt einen
+%neuen Absatz; \texttt{\textbackslash\textbackslash} ist \emph{kein} Ersatz.
+%\mwe{rezepte/03_text_und_listen.tex}{R03: verständlicher Fließtext und strukturierte Listen}
+%\begin{aufgabebox}
+%	Schreibe in drei Sätzen die Hypothese deiner Arbeit.
+%	Füge anschließend eine Materialliste und einen nummerierten Versuchsablauf hinzu.
+%\end{aufgabebox}
+\subsubsection{R03a · Schriftgrößen mit lmodern}
+\textbf{Du brauchst:} \pkg{lmodern}
+\mwe{rezepte/03a_schriften.tex}{R03a: Schriftgrößen mit lmodern}
+
+\subsubsection{R03b · Schriftgrößen mit anyfontsize}
+\textbf{Du brauchst:} \pkg{anyfontsize}
+\mwe{rezepte/03b_schriften.tex}{R03b: Schriftgrößen mit anyfontsize}
+
+\subsubsection{R03c · fontsize – Exakte Grundschriftgröße des gesamten Dokuments}
+\textbf{Du brauchst:} \pkg{lmodern}
+\mwe{rezepte/03c_schriften.tex}{R03c: fontsize – Exakte Grundschriftgröße des gesamten Dokuments}
+
+\subsubsection{R03d · Globale Schriftgrößen mit lmodern}
+\textbf{Du brauchst:} \pkg{lmodern}
+\mwe{rezepte/03d_schriften.tex}{R03d: Globale Schriftgrößen mit lmodern}
+
+\subsubsection{R03e · fontsize – Exakte Grundschriftgröße des gesamten Dokuments}
+\textbf{Du brauchst:} \pkg{lmodern}
+\mwe{rezepte/03e_schriften.tex}{R03e: fontsize – Exakte Grundschriftgröße des gesamten Dokuments}
+
+\newpage
 \section{Termin 2: Abbildungen und Tabellen}
 \subsection{R04 · Ein Bild mit Quellenbezug und Referenz}
 \textbf{Du brauchst:} \pkg{graphicx}; eine \texttt{figure}-Umgebung,
@@ -278,6 +317,29 @@ notiere ggf. Lizenz sowie Urheber. Das mitgelieferte Schema ist eigens für
 unseren Kurs gezeichnet.
 \end{merkbox}
 
+%\newline
+\subsection{R04x · Weitere Beispiele}
+\subsubsection{R04a · Ein Bild zuschneiden}
+\noindent
+\mwe{rezepte/04a_abbildung.tex}{R04a: Bild zuschneiden}
+
+\subsubsection{R04b · Ein Bild drehen}
+\mwe{rezepte/04b_abbildung.tex}{R04b: Bilder drehen}
+
+\subsubsection{R04c · Zwei Teilabbildungen}
+\mwe{rezepte/04c_abbildung.tex}{R04c: Zwei Teilabbildungen}
+
+\subsubsection{R04d · Lange und kurze Bildunterschriften}
+\mwe{rezepte/04d_abbildung.tex}{R04d: Lange und kurze Bildunterschriften}
+
+\subsubsection{R04e · Weitere Bildmanipulationen}
+\mwe{rezepte/04e_abbildung.tex}{R04e: Weitere Bildmanipulationen}
+
+\subsubsection{R04f · Parametrische Zeichngunen mit TikZ}
+\mwe{rezepte/04f_abbildung.tex}{R04f: Parametrische Zeichngunen mit TikZ}
+
+
+\newpage
 \subsection{R05 · Eine lesbare Messwerttabelle}
 \textbf{Du brauchst:} \pkg{booktabs} für klare horizontale Linien,
 \pkg{tabularx} für anpassbare Spaltenbreite und \pkg{siunitx} zum
@@ -304,15 +366,26 @@ mindestens drei eigene Messwerte in eine Tabelle. Füge in beiden Fällen
 \end{aufgabebox}
 
 \section{Termin 3: Formeln, Einheiten und Methoden}
-\subsection{R06 · Mathematische Formeln mit Nummern}
-\textbf{Du brauchst:} \pkg{amsmath}. Für einzelne Formeln verwende
+\subsection{R06a · Mathematische Formeln mit Nummern}
+\textbf{Du brauchst:} \pkg{amsmath}, \pkg{breqn}. Für einzelne Formeln verwende
 \texttt{equation}; mehrere zusammengehörige Rechenschritte werden mit
 \texttt{align} ausgerichtet. \texttt{\textbackslash eqref} setzt passende Klammern.
-\mwe{rezepte/06_formeln.tex}{R06: Mittelwert, Summenzeichen und Formelverweis}
+\mwe{rezepte/06_formeln.tex}{R06a: Mittelwert, Summenzeichen und Formelverweis}
+
 \noindent\textbf{Als Satzbild:}
 \begin{equation}\label{eq:demo}
 \overline T=\frac{1}{n}\sum_{i=1}^{n} T_i.
 \end{equation}
+
+\subsection{R06b · Gängige mathematische Befehle und Symbole}
+\textbf{Du brauchst zusätzlich:} \pkg{cancel}.
+\mwe{rezepte/06_formeln_und_befehle.tex}{R06b: Mathematische Befehle und Symbole}
+
+\subsection{R06b · Gängige mathematische Befehle und Symbole}
+\textbf{Du brauchst zusätzlich:} \pkg{cancel}.
+\mwe{rezepte/06_formeln_und_befehle.tex}{R06b: Mathematische Befehle und Symbole}
+
+
 
 \subsection{R07 · Zahlen, Messwerte und SI-Einheiten}
 \textbf{Du brauchst:} \pkg{siunitx} \emph{Version 3}.
