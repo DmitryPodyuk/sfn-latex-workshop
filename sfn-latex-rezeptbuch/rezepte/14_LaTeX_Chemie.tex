@@ -1,0 +1,111 @@
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+
+\usepackage{mathtools}
+\usepackage[version=4]{mhchem}
+\usepackage{chemfig}
+\usepackage{tikz}
+\usepackage{caption}
+
+\title{Chemische Formeln und Abbildungen mit LaTeX}
+\author{SFN -- LaTeX-Workshop}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	\tableofcontents
+	
+	\section{Chemische Summenformeln}
+	
+	Wasser (\ce{H2O}), Methan (\ce{CH4})
+	und Schwefelsäure (\ce{H2SO4})
+	sind Beispiele für chemische Verbindungen.
+	
+	\section{Reaktionsgleichungen}
+	
+	\subsection{Verbrennung von Methan}
+	
+	\begin{equation}
+		\ce{CH4 + 2 O2 -> CO2 + 2 H2O}
+		\label{eq:methan}
+	\end{equation}
+	
+	\subsection{Ammoniaksynthese}
+	
+	\begin{equation}
+		\ce{N2 + 3 H2 <=> 2 NH3}
+	\end{equation}
+	
+	\subsection{Chemisches Gleichgewicht}
+	
+	Die Gleichgewichtskonstante ist:
+	
+	\begin{equation}
+		K_c = \frac{
+			[\ce{NH3}]^2
+		}{
+			[\ce{N2}][\ce{H2}]^3
+		}
+	\end{equation}
+	
+	\section{Molekülstrukturen}
+	
+	\subsection{Einfache Verbindungen}
+	
+	\begin{center}
+		\chemfig{H_3C-CH_3}
+	\end{center}
+	
+	\begin{center}
+		\chemfig{H_2C=CH_2}
+	\end{center}
+	
+	\subsection{Essigsäure}
+	
+	\begin{figure}[htbp]
+		\centering
+		\chemfig{H_3C-C(=[2]O)-OH}
+		\caption{Strukturformel von Essigsäure}
+		\label{fig:essigsaeure}
+	\end{figure}
+	
+	\subsection{Benzol}
+	
+	\begin{figure}[htbp]
+		\centering
+		\chemfig{*6(-=-=-=)}
+		\caption{Kekulé-Struktur von Benzol}
+		\label{fig:benzol}
+	\end{figure}
+	
+	\section{Reaktionsschema}
+	
+	Hydrierung von Ethen:
+	
+	\begin{center}
+		\schemestart
+		\chemfig{H_2C=CH_2}
+		\arrow{->[\ce{H2}][Ni]}
+		\chemfig{H_3C-CH_3}
+		\schemestop
+	\end{center}
+	
+	\section{Mathematische Gleichungen in der Chemie}
+	
+	Die Arrhenius-Gleichung beschreibt die
+	Temperaturabhängigkeit der
+	Reaktionsgeschwindigkeitskonstante:
+	
+	\begin{equation}
+		k = A \exp\left(
+		-\frac{E_a}{RT}
+		\right)
+	\end{equation}
+	
+\end{document}

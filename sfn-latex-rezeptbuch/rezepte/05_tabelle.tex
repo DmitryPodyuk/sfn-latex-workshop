@@ -5,25 +5,36 @@
 \usepackage{tabularx}
 \usepackage{siunitx}
 \usepackage{multirow}
+\usepackage[table]{xcolor} % für Farben in Tabellen
+\usepackage{diagbox} %die obere linke Tabellenzelle diagonal teilen
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref} % für Verweise aus innerhalb der Zellen
+\usepackage{graphicx}
+\definecolor{hellblau}{HTML}{DCEAFB}
+\definecolor{hellgruen}{RGB}{220,245,220}
 
 \sisetup{locale=DE}
 \begin{document}
 \section{Messreihe}
 
-\begin{table}[h]
+%TODO: Zellen in Farben
+%TODO: Zelle in 2 Dreiecken teilen
+%TODO: ref from table cell to some picture
+
+\begin{table}[h] 
 	\centering
 	\caption{Table with multi-Columns}
-	\begin{tabular}{lcc}
-		Name & Age & Country \\
-		John Doe & 28 & USA \\
-		Jane Smith & 32 & UK \\
+	\begin{tabular}{ccc} %
+		
+		\input{tabellenInhal.tex}
+
 	\end{tabular} 
+
 \end{table} 
 
 
 \begin{table}[htbp]
   \centering
-  \caption{Temperaturabfall während des Versuchs}
   \label{tab:messung}
   \begin{tabularx}{\linewidth}{X S[table-format=2.0] S[table-format=2.1]}
     \toprule
@@ -34,12 +45,13 @@
     Ende    & 20 & 44.1 \\
     \bottomrule
   \end{tabularx}
+  \caption{Temperaturabfall während des Versuchs}
 \end{table}
 
 \begin{table}[htbp]
 	\centering
 	\caption{Experimental Results}
-	\label{tab:results}
+	\label{tab:results} %TODO: wie verwendet man das auf der 5. Seite
 	\begin{tabular}{l c c}
 		\hline
 		Sample & Temp & Yield \\
@@ -72,7 +84,7 @@
 \begin{table}
 	\centering
 	\caption{Tabelle mit multi-Spalten (i.e.multi-Columns)}
-	\begin{tabular}{|l|l|l|}
+	\begin{tabular}{|l|l|l|} %TODO: 'l' vs 's' vs 'c'
 	
 		\hline
 		\multicolumn{2}{|c|}{Multi-Column} & Column 3 \\
@@ -100,5 +112,126 @@
 \end{tabular}   
 \end{table}   
 
+%TODO: https://nhigham.com/2019/11/19/better-latex-tables-with-booktabs/
+%% First version of table.
+%\begin{tabular}{|l|c|c|c|c|c|l|}\hline
+%	& \multicolumn{3}{c|}{$\tol=\tols$} & \multicolumn{3}{c|}{$\tol=\told$}\\
+%	& $mv$  & Rel.~err & Time    & $mv$  & Rel.~err & Time   \\\hline
+%	\trigmv    & 11034 & 1.3e-7 & 3.9 & 15846 & 2.7e-11 & 5.6 \\
+%	\trigexpmv & 21952 & 1.3e-7 & 6.2 & 31516 & 2.7e-11 & 8.8 \\
+%	\trigblock & 15883 & 5.2e-8 & 7.1 & 32023 & 1.1e-11 & 1.4e1\\
+%	\expleja   & 11180 & 8.0e-9 & 4.3 & 17348 & 1.5e-11 & 6.6 \\\hline
+%\end{tabular}
+%
+%% Second version of table, with booktabs.
+%\begin{tabular}{lcccccl}\toprule
+%	& \multicolumn{3}{c}{$\tol=\tols$} & \multicolumn{3}{c}{$\tol=\told$}
+%	\\\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+%	& $mv$  & Rel.~err & Time    & $mv$  & Rel.~err & Time\\\midrule
+%	\trigmv    & 11034 & 1.3e-7 & 3.9 & 15846 & 2.7e-11 & 5.6 \\
+%	\trigexpmv & 21952 & 1.3e-7 & 6.2 & 31516 & 2.7e-11 & 8.8 \\
+%	\trigblock & 15883 & 5.2e-8 & 7.1 & 32023 & 1.1e-11 & 1.4e1\\
+%	\expleja   & 11180 & 8.0e-9 & 4.3 & 17348 & 1.5e-11 & 6.6 \\\bottomrule
+%\end{tabular}
+
+\begin{table}
+	\centering
+	\caption{Bunte Tabelle}  
+	\begin{tabular}{|l|c|c|}
+		\hline
+		\rowcolor{blue!20}
+		Messung & Temperatur & Status \\
+		\hline
+		A & 20 & \cellcolor{green!25}OK \\
+		\hline
+		B & 45 & \cellcolor{yellow!35}Warnung \\
+		\hline
+		C & 80 & \cellcolor{red!25}Kritisch \\
+		\hline
+	\end{tabular}  
+\end{table}   
+
+\begin{table}
+	\centering
+	\caption{Ganze Spalte einfärben} 
+  
+\begin{tabular}{
+		l
+		>{\columncolor{blue!10}}c
+		r
+	}
+	Messung & Wert & Einheit \\
+	A & 12.5 & m \\
+	B & 15.8 & m
+\end{tabular}  
+\end{table}   
+
+
+\begin{table}
+	\centering
+	\caption{Abwechselnd gefärbte Zeilen} 
+	\rowcolors{2}{gray!15}{white}
+
+\begin{tabular}{lcc}
+	Messung & Wert 1 & Wert 2 \\
+	A & 10 & 20 \\
+	B & 15 & 25 \\
+	C & 30 & 40 \\
+	D & 35 & 45
+\end{tabular}
+
+\rowcolors{2}{}{}
+\end{table}   
+  
+  \begin{table}
+  	\centering
+  	\caption{Die obere linke Tabellenzelle diagonal geteilt}
+
+  	\begin{tabular}{|l|c|c|}
+  		\hline
+  		\diagbox[width=3cm,height=1.4cm]
+  		{Produkt}{Monat}
+  		& Januar & Februar \\
+  		\hline
+  		Gas   & 120 & 150 \\
+  		\hline
+  		Strom & 80  & 95  \\
+  		\hline
+  		Wärme & 60  & 75  \\
+  		\hline
+  	\end{tabular}
+  \end{table}   
+ 
+
+
+\begin{table}[htbp]
+	\centering
+	
+	\begin{tabular}{lll}
+		\toprule
+		Objekt & Beschreibung & Verweis \\
+		\midrule
+		Energie & Masse-Energie &
+		Gleichung~\eqref{eq:energie} \\
+		Grafik & Schematische Darstellung &
+		Abbildung~\ref{fig:beispiel} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Verweise aus einzelnen Zellen zum Bild oder Formel}
+	\label{tab:referenzen}
+\end{table}  
+  
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=10cm]{ContrainedPendulaState.jpg}
+	\caption{Schematische Beispielabbildung}
+	\label{fig:beispiel}
+\end{figure}
+
+
+\begin{equation}
+	E = mc^2
+	\label{eq:energie}
+\end{equation}  
   
 \end{document}

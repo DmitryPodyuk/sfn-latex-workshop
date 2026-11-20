@@ -1,0 +1,388 @@
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% ==========================================================
+% Pakete
+% ==========================================================
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{cancel} %für mathematische Ausdrücke durchzustreichen oder zu kürzen
+
+% ==========================================================
+% Eigene mathematische Operatoren
+% ==========================================================
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\begin{document}
+	
+	\section{Mathematische Befehle und Symbole}
+	\label{sec:mathematische-befehle}
+	
+	Dieses Kapitel enthält eine Sammlung der wichtigsten
+	mathematischen Befehle in LaTeX.
+	
+	% ==========================================================
+	\subsection{Brüche, Potenzen und Wurzeln}
+	% ==========================================================
+	
+	\begin{align}
+		\text{Bruch:}\quad %erzeugt einen horizontalen Abstand
+		&\frac{a}{b} \\[4pt]
+		\text{Großer Bruch:}\quad
+		&\dfrac{a+b}{c+d} \\[4pt]
+		\text{Kleiner Bruch:}\quad
+		&\tfrac{a}{b} \\[4pt]
+		\text{Quadratwurzel:}\quad
+		&\sqrt{x} \\[4pt]
+		\text{n-te Wurzel:}\quad
+		&\sqrt[n]{x} \\[4pt]
+		\text{Potenz:}\quad
+		&x^{n+1} \\[4pt]
+		\text{Index:}\quad
+		&x_{i,j} \\[4pt]
+		\text{Binomialkoeffizient:}\quad
+		&\binom{n}{k}
+	\end{align}
+\\
+
+
+	
+	\[ % keine Nummerierung
+	\begin{alignedat}{2}
+		\text{Bruch:}          &\qquad& \frac{a}{b} \\
+		\text{Großer Bruch:}   &      & \dfrac{a+b}{c+d} \\
+		\text{Kleiner Bruch:}  &      & \tfrac{a}{b} \\
+		\text{Quadratwurzel:} &      & \sqrt{x}
+	\end{alignedat}
+	\]
+\\
+
+	
+	\begin{equation} % wird nummeriert
+		\begin{alignedat}{1}
+			\text{Bruch:}\qquad          & \frac{a}{b} \\
+			\text{Großer Bruch:}\qquad   & \dfrac{a+b}{c+d} \\
+			\text{Kleiner Bruch:}\qquad  & \tfrac{a}{b} \\
+			\text{Quadratwurzel:}\qquad & \sqrt{x}
+		\end{alignedat}
+		\label{eq:formelsammlung}
+	\end{equation}
+\\
+	
+	Beispiel: Quadratische Lösungsformel
+	
+	\begin{equation}
+		\boxed{
+			x_{1,2} =
+			\frac{-b \pm \sqrt{b^2-4ac}}{2a}
+		}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Summen, Produkte und Grenzwerte}
+	% ==========================================================
+	
+	\begin{align}
+		\sum_{i=1}^{n} i
+		&= \frac{n(n+1)}{2} \\[6pt]
+		\prod_{i=1}^{n} i
+		&= n! \\[6pt]
+		\lim_{x\to 0}\frac{\sin x}{x}
+		&= 1 \\[6pt]
+		\lim_{n\to\infty}\frac{1}{n}
+		&= 0 \\[6pt]
+		\limsup_{n\to\infty}x_n
+		& \\[6pt]
+		\liminf_{n\to\infty}x_n
+		&
+	\end{align}
+	
+	% ==========================================================
+	\subsection{Integrale}
+	% ==========================================================
+	
+	\begin{align}
+		\int f(x)\,dx
+		&= F(x)+C \\[6pt]
+		\int_a^b f(x)\,dx
+		&= F(b)-F(a) \\[6pt]
+		\iint_D f(x,y)\,dA
+		& \\[6pt]
+		\iiint_V f(x,y,z)\,dV
+		& \\[6pt]
+		\oint_C \vec{F}\cdot d\vec{r}
+		&
+	\end{align}
+	
+	% ==========================================================
+	\subsection{Ableitungen}
+	% ==========================================================
+	
+	\begin{align}
+		f'(x)
+		&= \frac{df}{dx} \\[6pt]
+		f''(x)
+		&= \frac{d^2f}{dx^2} \\[6pt]
+		\frac{\partial f}{\partial x}
+		& \\[6pt]
+		\frac{\partial^2 f}{\partial x^2}
+		& \\[6pt]
+		\dot{x}
+		&= \frac{dx}{dt} \\[6pt]
+		\ddot{x}
+		&= \frac{d^2x}{dt^2}
+	\end{align}
+	
+	% ==========================================================
+	\subsection{Mathematische Funktionen}
+	% ==========================================================
+	
+	\begin{align}
+		\sin(x) &\qquad \cos(x) \qquad \tan(x)\\
+		\arcsin(x) &\qquad \arccos(x)\\
+		\ln(x) &\qquad \log(x)\\
+		\log_2(x) &\qquad \exp(x)\\
+		\min_{x\in A}f(x)
+		&\qquad \max_{x\in A}f(x)
+	\end{align}
+	
+	Beispiel: Exponentialfunktion
+	
+	\begin{equation}
+		f(x)=A\exp(-\lambda x)
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Vektoren und Matrizen}
+	% ==========================================================
+	
+	\begin{align}
+		\vec{v} &=
+		\begin{pmatrix}
+			v_x\\
+			v_y\\
+			v_z
+		\end{pmatrix}
+		\\[8pt]
+		A &=
+		\begin{pmatrix}
+			a & b\\
+			c & d
+		\end{pmatrix}
+		\\[8pt]
+		B &=
+		\begin{bmatrix}
+			1 & 2\\
+			3 & 4
+		\end{bmatrix}
+	\end{align}
+	
+	Determinante:
+	
+	\begin{equation}
+		\det(A)=
+		\begin{vmatrix}
+			a & b\\
+			c & d
+		\end{vmatrix}
+		=ad-bc
+	\end{equation}
+	
+	Vektornorm:
+	
+	\begin{equation}
+		\norm{\vec{v}}
+		=\sqrt{v_x^2+v_y^2+v_z^2}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Mengen und logische Operatoren}
+	% ==========================================================
+	
+	\begin{align*}
+		a &\neq b\\
+		a &\leq b\\
+		a &\geq b\\
+		a &\approx b\\
+		a &\equiv b\\
+		a &\propto b\\
+		x &\in A\\
+		x &\notin A\\
+		A &\subseteq B\\
+		A &\cup B\\
+		A &\cap B
+	\end{align*}
+	
+	Weitere Symbole:
+	
+	\[
+	\forall,\quad
+	\exists,\quad
+	\emptyset,\quad
+	\land,\quad
+	\lor,\quad
+	\Rightarrow,\quad
+	\Leftrightarrow
+	\]
+	
+	% ==========================================================
+	\subsection{Griechische Buchstaben}
+	% ==========================================================
+	
+	\[
+	\begin{gathered}
+		\alpha,\ \beta,\ \gamma,\ \delta,\ \epsilon,\
+		\varepsilon,\ \zeta,\ \eta,\ \theta,\ \vartheta,\\
+		\iota,\ \kappa,\ \lambda,\ \mu,\ \nu,\
+		\xi,\ \pi,\ \rho,\ \sigma,\ \tau,\\
+		\upsilon,\ \phi,\ \varphi,\ \chi,\ \psi,\ \omega
+	\end{gathered}
+	\]
+	
+	Großbuchstaben:
+	
+	\[
+	\Gamma,\ \Delta,\ \Theta,\ \Lambda,\
+	\Xi,\ \Pi,\ \Sigma,\ \Upsilon,\
+	\Phi,\ \Psi,\ \Omega
+	\]
+	
+	% ==========================================================
+	\subsection{Klammern und Beträge}
+	% ==========================================================
+	
+	Automatisch angepasste Klammergrößen:
+	
+	\begin{equation}
+		f(x)=
+		\left(
+		\frac{x^2+1}{x-1}
+		\right)^2
+	\end{equation}
+	
+	Betrag:
+	
+	\begin{equation}
+		\abs{x},\qquad
+		\abs*{\frac{x+1}{x-1}}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Weitere nützliche Befehle}
+	% ==========================================================
+	
+	\begin{align}
+		a &\overset{!}{=} b\\
+		x &\xrightarrow{n\to\infty} 0\\
+		f(x) &\coloneqq x^2+3x+2\\
+		\overline{x} &= \frac{1}{n}
+		\sum_{i=1}^{n}x_i\\
+		\hat{\theta} &= \theta+\varepsilon\\
+		\cancel{x} + y &= y
+		\quad \text{für }x=0
+	\end{align}
+	
+	Terme beschriften:
+	
+	\begin{equation}
+		F =
+		\underbrace{ma}_{\text{Trägheit}}
+		+
+		\underbrace{c\dot{x}}_{\text{Dämpfung}}
+		+
+		\underbrace{kx}_{\text{Federkraft}}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Eigene mathematische Operatoren}
+	% ==========================================================
+	
+	\begin{equation}
+		\Var(X+Y)
+		=
+		\Var(X)+\Var(Y)+2\Cov(X,Y)
+	\end{equation}
+	
+	\begin{equation}
+		D=\diag(\lambda_1,\lambda_2,\lambda_3)
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Fallunterscheidungen}
+	% ==========================================================
+	
+	\begin{equation}
+		f(x)=
+		\begin{dcases}
+			x^2, & \text{wenn }x>0,\\
+			0, & \text{wenn }x=0,\\
+			-x, & \text{wenn }x<0.
+		\end{dcases}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Gleichungssysteme}
+	% ==========================================================
+	
+	\begin{equation}
+		\begin{aligned}
+			2x+y &= 5\\
+			x-y &= 1
+		\end{aligned}
+	\end{equation}
+	
+	% ==========================================================
+	\subsection{Lange Gleichungen}
+	% ==========================================================
+	
+	\begin{align}
+		\MoveEqLeft
+		Q_0=-m_0gl_0\sin(\theta_0)
+		\notag\\
+		&+m_1gL_1\cos(\theta_0)
+		\notag\\
+		&-m_2gL_2\cos(\theta_0)
+		\notag\\
+		&-D_0\dot{\theta}_0
+		\notag\\
+		&+D_1(\dot{\theta}_1-\dot{\theta}_0)
+		\notag\\
+		&+D_2(\dot{\theta}_2-\dot{\theta}_0)
+		\notag\\
+		&+M_{\mathrm{control}}
+	\end{align}
+
+	\subsection{Brüche kürzen}
+% ==========================================================
+
+	\begin{equation}
+		\frac{2\cancel{x}y}{4\cancel{x}}
+		= \frac{y}{2}
+	\end{equation}
+
+	\begin{equation}
+		a+b-\cancelto{0}{b-b}=a
+	\end{equation}
+	
+	\begin{equation}
+		a+\cancelto{0}{(b-b)}=a
+	\end{equation}
+
+	\begin{equation}
+		\lim_{x\to 0}
+		\frac{x^2+3x}{x}
+		=
+		\lim_{x\to 0}
+		\frac{\cancel{x}(x+3)}{\cancel{x}}
+		=3
+	\end{equation}
+
+\end{document}

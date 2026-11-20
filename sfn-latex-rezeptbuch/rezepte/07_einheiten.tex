@@ -1,16 +1,245 @@
-\documentclass{scrartcl}
+\documentclass[11pt,a4paper]{scrartcl}
+
+% ==================================================
+% Pakete
+% ==================================================
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{booktabs} %professionelle Formatierung für Tabellen
 \usepackage{siunitx}
-\sisetup{locale=DE}
+
+% Deutsche Zahlenformatierung
+\sisetup{
+	locale = DE,
+	per-mode = symbol
+}
+
 \begin{document}
-\section{Größen und Einheiten}
-Die Strecke beträgt \qty{12.5}{\metre}.
-Die Zeit beträgt \qty{2.5}{\second}.
-Die mittlere Geschwindigkeit ist
-\begin{equation}
-  v = \frac{s}{t} = \qty{5}{\metre\per\second}.
-\end{equation}
-Ein Messwert ohne Einheit: \num{1234.56}.
-Eine Temperatur: \qty{21.4}{\degreeCelsius}.
+	
+	\section{Physikalische Größen und Einheiten
+		mit \texttt{siunitx}}
+	
+	% ==================================================
+	\subsection{Zahlen formatieren mit \texttt{\textbackslash num}}
+	% ==================================================
+	
+	\begin{itemize}
+		\item Große Zahl: \num{1234567.89}
+		\item Kleine Zahl: \num{0.000012345}
+		\item Negative Zahl: \num{-1234.567}
+		\item Wissenschaftliche Notation: \num{1.23e6}
+		\item Gerundete Zahl:
+		\num[
+		round-mode=places,
+		round-precision=2
+		]{3.14159265}
+	\end{itemize}
+	
+	% ==================================================
+	\subsection{Physikalische Größen mit \texttt{\textbackslash qty}}
+	% ==================================================
+	
+	\begin{itemize}
+		\item Länge: \qty{12.5}{\metre}
+		\item Masse: \qty{75.3}{\kilogram}
+		\item Zeit: \qty{120}{\second}
+		\item Temperatur: \qty{22.5}{\celsius}
+		\item Geschwindigkeit:
+		\qty{90}{\kilo\metre\per\hour}
+		\item Beschleunigung:
+		\qty{9.81}{\metre\per\second\squared}
+		\item Kraft: \qty{250}{\newton}
+		\item Druck: \qty{1.01325}{\bar}
+		\item Energie: \qty{1500}{\joule}
+		\item Leistung: \qty{250}{\kilo\watt}
+		\item Spannung: \qty{230}{\volt}
+		\item Widerstand: \qty{50}{\ohm}
+	\end{itemize}
+	
+	% ==================================================
+	\subsection{Einheiten ohne Zahlen mit \texttt{\textbackslash unit}}
+	% ==================================================
+	
+	\begin{itemize}
+		\item Länge: 
+			\unit{\metre}
+		\item Geschwindigkeit:
+			\unit{\metre\per\second}
+		\item Beschleunigung:
+			\unit{\metre\per\second\squared}
+		\item Dichte:
+			\unit{\kilogram\per\cubic\metre}
+		\item Energie:
+			\unit{\joule}
+		\item Druck:
+			\unit{\newton\per\square\metre}
+	\end{itemize}
+	
+	% ==================================================
+	\subsection{Einheiten in mathematischen Formeln}
+	% ==================================================
+	
+	\begin{equation}
+		F = m \cdot a
+	\end{equation}
+	
+	Beispiel:
+	
+	\begin{equation}
+		F =
+		\qty{10}{\kilogram}
+		\cdot
+		\qty{9.81}{\metre\per\second\squared}
+		=
+		\qty{98.1}{\newton}
+	\end{equation}
+	
+	Kinetische Energie:
+	
+	\begin{equation}
+		E_{\mathrm{kin}} =
+		\frac{1}{2}mv^2
+	\end{equation}
+	
+	Beispiel:
+	
+	\begin{equation}
+		E_{\mathrm{kin}}
+		=
+		\frac{1}{2}
+		\cdot \qty{2}{\kilogram}
+		\cdot
+		\left(
+		\qty{3}{\metre\per\second}
+		\right)^2
+		=
+		\qty{9}{\joule}
+	\end{equation}
+	
+	% ==================================================
+	\subsection{Messunsicherheiten}
+	% ==================================================
+	
+	Messwert mit Unsicherheit:
+	
+	\begin{equation}
+		l =
+		\qty[
+		uncertainty-mode=separate
+		]{12.34(5)}{\metre}
+	\end{equation}
+	
+	Temperaturmessung:
+	
+	\begin{equation}
+		T =
+		\qty[
+		uncertainty-mode=separate
+		]{23.5(2)}{\celsius}
+	\end{equation}
+	
+	% ==================================================
+	\subsection{Winkel}
+	% ==================================================
+	
+	\begin{itemize}
+		\item Winkel: \ang{45}
+		\item Dezimalwinkel: \ang{90.5}
+		\item Grad, Minuten und Sekunden:
+		\ang{30;15;20}
+	\end{itemize}
+	
+	% ==================================================
+	\subsection{Bereiche und Listen}
+	% ==================================================
+	
+	\begin{itemize}
+		\item Zahlenbereich:
+		\numrange{10}{20}
+		\item Temperaturbereich:
+		\qtyrange{18}{25}{\celsius}
+		\item Längenbereich:
+		\qtyrange{5}{15}{\metre}
+		\item Zahlenliste:
+		\numlist{1;2;3;4}
+		\item Messwertliste:
+		\qtylist{10;20;30}{\kilogram}
+	\end{itemize}
+	
+	% ==================================================
+	\subsection{Tabellen mit Dezimalausrichtung}
+	% ==================================================
+	
+	\begin{table}[htbp]
+		\centering
+		
+		\begin{tabular}{
+				l
+				S[table-format=3.2]
+				S[table-format=2.2]
+			}
+			\toprule
+			{Messung} &
+			{Masse (\unit{\kilogram})} &
+			{Länge (\unit{\metre})} \\
+			\midrule
+			A & 12.50  & 1.25 \\
+			B & 2.35   & 2.50 \\
+			C & 125.70 & 12.75 \\
+			D & 0.25   & 0.50 \\
+			\bottomrule
+		\end{tabular}
+		
+		\caption{Messwerte mit automatisch
+			ausgerichteten Dezimalstellen}
+		
+		\label{tab:siunitx-messwerte}
+	\end{table}
+	
+	% ==================================================
+	\subsection{Eigene Einheiten definieren mit \texttt{\textbackslash DeclareSIUnit}}
+	% ==================================================
+	
+	% Beispiel: Energieeinheit
+	\DeclareSIUnit{\kWh}{kWh}
+	
+	Ein Energieverbrauch von
+	\qty{125.5}{\kWh}.
+	
+	% ==================================================
+	\subsection{Zusammenfassung}
+	% ==================================================
+	
+	Die wichtigsten Befehle:
+	
+	\begin{description}
+		
+		\item[\texttt{\textbackslash num}]
+		Zahlen formatieren.
+		
+		\item[\texttt{\textbackslash unit}]
+		Einheiten darstellen.
+		
+		\item[\texttt{\textbackslash qty}]
+		Zahlen mit Einheiten kombinieren.
+		
+		\item[\texttt{\textbackslash ang}]
+		Winkel darstellen.
+		
+		\item[\texttt{\textbackslash qtyrange}]
+		Messwertbereiche darstellen.
+		
+		\item[\texttt{\textbackslash qtylist}]
+		Messwertlisten darstellen.
+		
+		\item[\texttt{\textbackslash sisetup}]
+		Globale Einstellungen definieren.
+		
+		\item[\texttt{S-Spalte}]
+		Dezimalzahlen in Tabellen ausrichten.
+		
+	\end{description}
+	
 \end{document}

@@ -3,18 +3,20 @@
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
 \usepackage{mathtools} %ist erforderlich, um Systeme von Gleichungen zu notieren
+\usepackage{breqn} %ermöglich automatische Formelnumbrüche
 
 \begin{document}
-\section{Auswertung}
+\section{Mathematische Ausdrücke, Formeln etc.}
 Die mittlere Temperatur ist $\bar T$ (als inline-Formula). Das ist auch eine in den Text eingebetete Formula: $f(x) = 2.0 \times x^2+45 \times x$. Hier is auch ein gutes Beisoiel für eingebetete Formel:\(\sqrt{x^2+1}\)
 ....
 \begin{equation}\label{eq:mittelwert}
   \bar T = \frac{1}{n}\sum_{i=1}^{n}T_i
 \end{equation}
-Die Berechnung erfolgt mit Gleichung~\eqref{eq:mittelwert}.
+Die Berechnung erfolgt mit Gleichung~\eqref{eq:mittelwert}.\\
 
-Mehrere Umformungen werden ausgerichtet:
-\begin{align*}
+
+\subsection*{Mehrere Umformungen werden ausgerichtet:}
+\begin{align*} % '*' wird verwendet, um den mathematischen Ausdruck aus der Nummerierung auszuschliessen. Das '*' muss auch in der Schlussdeklaration verwendet werden: \end{align*}
   \Delta T &= T_{\mathrm{Start}}-T_{\mathrm{Ende}} \\
            &= 65{,}0-44{,}1 = 20{,}9.
 \end{align*}
@@ -34,7 +36,6 @@ Lagrangian:
 \[
 L=\sum_{i=1}^{n}T - \sum_{i=1}^{n}U
 \]
-
 
 \subsection*{Matrix}
 \[
@@ -62,12 +63,28 @@ L=\sum_{i=1}^{n}T - \sum_{i=1}^{n}U
 \right]
 \end{equation}
 
+%TODO: Automatische Umbrüche bei Formeln % erledigt
+\subsection*{Automatische Umbrüche}
+\subsubsection*{mit 'dmath'}
+\begin{dmath} %dmath anstelle von equation
+	Q_0 =
+	-m_0 g l_0 \sin(\theta_0)
+	+m_1 g L_1 \cos(\theta_0)
+	-m_2 g L_2 \cos(\theta_0)
+	-D_0 \dot{\theta}_0
+	+D_1(\dot{\theta}_1-\dot{\theta}_0)
+	+D_2(\dot{\theta}_2-\dot{\theta}_0)
+	+M_{\mathrm{control}}
+\end{dmath}
 
-
+\subsubsection*{Umbrüche im Text mit 'allowbreak'}
+Eine lange Gleichung innerhalb des Textes kann man mit kontrollieren:  $\allowbreak a+b+c+d+e+f+g+h$ -> diese Gleichung beschreibt die Summe.
 
 
 \newpage
-\subsection*{Quadratic Equation \#1}
+\subsection*{Systeme von Gleichungen}
+\subsubsection*{Beispiel: Systeme von quadratischen Gleichungen \#1}
+
 \begin{math}
 	\begin{cases}
 		y=a+bx\\
@@ -84,7 +101,7 @@ L=\sum_{i=1}^{n}T - \sum_{i=1}^{n}U
 	D=(2(x_0-b\sqrt{P^2-x_0^2}-ab))^2-4(1+b^2)(P^2+a^2-R^2-2a\sqrt{P^2-x_0^2})\\
 \end{math}
 \newline
-Another way, which is considered to be much better:\\
+Hier erscheinen Beschreibungen bzw. Kommentare zum unten stehenden System der Gleichungen...
 \newline
 \begin{math}
 	\begin{cases*}
@@ -105,7 +122,7 @@ Another way, which is considered to be much better:\\
 \end{math}
 
 \newpage
-\subsection*{Quadratic Equation \#2}
+\subsubsection*{Beispiel: System von quadratischen Gleichungen \#2}
 \begin{math}
 	\begin{cases*}
 		y=a+bx\\
@@ -158,5 +175,97 @@ Another way, which is considered to be much better:\\
 	\\
 \end{math}
 
+
+\begin{align}
+	\intertext{Drehmomente für jede Achse unter Berücksichtigung
+		der Reibungskräfte $D_i$ (Dämpfung) und des von außen
+		aufgebrachten Steuerdrehmoments $MControl$ (im Fall von $Q_0$).
+		Der Index $i$ bezeichnet die Nummer der Achse, wobei $i=0$
+		der zentralen Achse entspricht:}
+	Q_0  = \\
+	&\quad - m_0 g l_0  \sin (\theta_0)\nonumber\\
+	&\quad + m_1 g L_1  \cos (\theta_0)\nonumber\\
+	&\quad - m_2 g L_2  \cos (\theta_0)\nonumber\\
+	&\quad - D_0 \dot{\theta_0}\nonumber\\
+	&\quad + D_1 \dot{\theta_1}\nonumber\\
+	&\quad - D_1 \dot{\theta_0}\nonumber\\
+	&\quad + D_2 \dot{\theta_2}\nonumber\\
+	&\quad - D_2 \dot{\theta_0}\nonumber\\
+	&\quad + L_1\nonumber\\
+	&\quad + MControl\nonumber\\
+	\nonumber\\
+	Q_1 =\\
+	&\quad - m_1 g l_1 \sin (\theta_1)\nonumber\\
+	&\quad - D_1 \dot{\theta_1}\nonumber\\
+	&\quad + D_1 \dot{\theta_0}\nonumber\\
+	\nonumber\\
+	Q_2 =\\
+	&\quad - m_2 g l_2 \sin (\theta_2)\nonumber\\
+	&\quad - D_2 \dot{\theta_2}\nonumber\\
+	&\quad + D_2 \dot{\theta_0}\nonumber
+\end{align}
+
+\begin{align}
+	a &= b + c \\
+	\intertext{Nach Einsetzen der Werte erhalten wir:}
+	a &= 3 + 5 \\
+	\shortintertext{Daraus folgt:}
+	a &= 8
+\end{align}
+
+
+Text innerhalb einer Gleichung:
+\begin{align}
+	F &= m \cdot a
+	&& \text{(Newton)} \\
+	E &= m \cdot c^2
+	&& \text{(Einstein)}
+\end{align}
+
+
+\begin{equation}
+	(a+b)^2 =
+	\overbrace{a^2+2ab+b^2}^{\text{Binomische Formel}}
+\end{equation}
+
+
+\begin{equation*}
+	Q =
+	\underbrace{mgl\sin(\theta)}_{\text{Gravitation}}
+	+
+	\underbrace{D\dot{\theta}}_{\text{Dämpfung}}
+	+
+	\underbrace{M}_{\text{Steuerung}}
+\end{equation*}
+
+\[
+Q =
+\underbrace{D\dot{\theta}}_{
+	\substack{
+		\text{Viskose}\\
+		\text{Dämpfung}
+	}
+}
+\]
+
+
+\begin{align}
+	a &= b + c \tag{A}\\
+	d &= e + f \notag\\
+	g &= h + i \tag{B}
+\end{align}
+
+\begin{align}
+	x + 3 &= 7\\
+	\Aboxed{x &= 4}
+\end{align}
+
+\begin{align}
+	\MoveEqLeft Q_0 = \\ % 
+	&- m_0 g l_0 \sin(\theta_0) \notag\\
+	&+ m_1 g L_1 \cos(\theta_0) \notag\\
+	&- D_0 \dot{\theta}_0 \notag\\
+	&+ MControl
+\end{align}
 
 \end{document}

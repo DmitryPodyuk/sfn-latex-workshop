@@ -8,6 +8,8 @@
 \usepackage{amssymb} %erforderlich für \checkmark in itemize
 %\setlist[enumerate]{label=\arabic*., nosep} % Gilt für alle enumerate-Umgebungen
 
+\usepackage{multicol} % Mehrspaltige Listen
+
 \begin{document}
 \section{Lesbarer wissenschaftlicher Text}
 Das \emph{Ziel} wird hervorgehoben, ohne den gesamten Absatz fett zu drucken.
@@ -26,7 +28,10 @@ Das \emph{Ziel} wird hervorgehoben, ohne den gesamten Absatz fett zu drucken.
 \end{enumerate}
 
 \subsection{Listen mit itemize}
-\begin{itemize}
+%\begin{itemize}
+\begin{itemize}[label=\tiny$\blacksquare$]
+%\begin{itemize}[label=$\scriptscriptstyle\blacksquare$]
+%\begin{itemize}[label=$\square$]
 %\begin{itemize}[label={--}]	%\begin{itemize}[label=\textendash]
 %\begin{itemize}[label=$\rightarrow$]% (erfordert den Mathemodus)
 %\begin{itemize}[label=$\blacksquare$]% (benötigt das Paket amssymb)
@@ -51,5 +56,46 @@ Das \emph{Ziel} wird hervorgehoben, ohne den gesamten Absatz fett zu drucken.
 
 Eine Fußnote ergänzt den Text.\footnote{Keine wichtigen Ergebnisse in Fußnoten verstecken.}\\
 Zweite Fußnote ergänzt den Text.\footnote{Keine wichtigen Ergebnisse in Fußnoten verstecken.}
+
+\begin{itemize}[
+	label=$\scriptscriptstyle\blacksquare$,
+	itemsep=2pt,
+	topsep=3pt,
+	leftmargin=1.5em,
+	labelsep=0.5em
+	]
+	\item Erster Punkt
+	\item Zweiter Punkt
+	\item Dritter Punkt
+\end{itemize}
+
+\subsection{Mehrspaltige Listen}
+
+\begin{multicols}{2}
+	\begin{itemize}[nosep]
+		\item Wasserstoff
+		\item Sauerstoff
+		\item Stickstoff
+		\item Kohlenstoff
+		\item Eisen
+		\item Kupfer
+	\end{itemize}
+\end{multicols}
+
+
+\subsection{Verschachtelte Listen}
+\begin{itemize}[label=$\bullet$]
+	\item Mathematik
+	\begin{itemize}[label=$\circ$]
+		\item Algebra
+		\item Analysis
+	\end{itemize}
+	
+	\item Physik
+	\begin{itemize}[label=$\scriptscriptstyle\blacksquare$]
+		\item Mechanik
+		\item Thermodynamik
+	\end{itemize}
+\end{itemize}
 
 \end{document}
